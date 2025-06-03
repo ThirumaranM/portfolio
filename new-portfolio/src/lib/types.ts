@@ -72,10 +72,25 @@ export interface Experience<S extends string = string> extends Project<S> {
 export interface Education<S extends string = string> extends Item<S> {
 	organization: string;
 	location: string;
+	// color: Color;
 	period: {
 		from: Date;
 		to?: Date;
 	};
 	subjects: Array<string>;
 	degree: string;
+}
+
+export interface Certifications<S extends string = string> extends Item<S> {
+	organization: string;
+	location: string;
+	color: Color;
+	period: {
+		from: Date;
+		to?: Date;
+	};
+	subjects: Array<string>;
+	degree: string;
+	verificationUrl?: string;
+	badgeImageUrl?: Asset;
 }

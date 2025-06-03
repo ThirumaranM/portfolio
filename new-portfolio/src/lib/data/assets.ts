@@ -81,6 +81,9 @@ const Assets = {
 	Amili: a('amili.svg'),
 	Plant365: a('plant365.svg'),
 	screen1: a('1.png'),
+	associate: a('associate.png'),
+	professioanl: a('professional.png'),
+	nayku: a('nayku1.png'),
 };
 
 export default Assets;

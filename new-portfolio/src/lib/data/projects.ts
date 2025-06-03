@@ -4,23 +4,6 @@ import type { Project } from '../types';
 
 export const items: Array<Project> = [
 	{
-		slug: 'automated-pipeline',
-		color: '#5e95e3',
-		description:
-			'Developed automation workflows for a research-driven application focused on identifying good and bad bacteria in human samples. Implemented CI/CD pipelines to streamline the data ingestion, processing, and deployment lifecycle. Utilized AWS services such as Lambda, S3, and Batch to automate data extraction, transformation, and storage. Integrated machine learning models for bacterial classification to support real-time analysis. Ensured the entire workflow was scalable, secure, and optimized for performance in a fully cloud-native environment.',
-		shortDescription:
-			'Cloud-based automation pipeline for analyzing bacterial composition in human samples using AWS serverless technologies and CI/CD workflows.',
-		links: [{ to: '', label: '' }],
-		logo: Assets.Amili,
-		name: 'Automated Pipeline for Microbiome Analysis',
-		period: {
-			from: new Date('2023-08-01'),
-			to: new Date('2025-03-31')
-		},
-		skills: getSkills('aws', 'python', 'docker', 'postgreSQL', 'git'),
-		type: 'Backend Automation'
-	},
-	{
 		slug: 'sales-management',
 		color: '#ff3e00',
 		description:
@@ -40,28 +23,42 @@ export const items: Array<Project> = [
 			{
 				label: '1',
 				src: Assets.screen1
-			},
-			// {
-			// 	label: '2',
-			// 	src: 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZ3JhbW1pbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60'
-			// },
-			// {
-			// 	label: '3',
-			// 	src: 'https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2dyYW1taW5nfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60'
-			// },
-			// {
-			// 	label: '4',
-			// 	src: 'https://images.unsplash.com/photo-1542903660-eedba2cda473?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2dyYW1taW5nfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60'
-			// },
-			// {
-			// 	label: '5',
-			// 	src: 'https://images.unsplash.com/photo-1619410283995-43d9134e7656?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHByb2dyYW1taW5nfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60'
-			// },
-			// {
-			// 	label: '6',
-			// 	src: 'https://images.unsplash.com/photo-1585079542156-2755d9c8a094?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHByb2dyYW1taW5nfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60'
-			// }
+			}
 		]
+	},
+	{
+		slug: 'automated-pipeline',
+		color: '#5e95e3',
+		description:
+			'Developed automation workflows for a research-driven application focused on identifying good and bad bacteria in human samples. Implemented CI/CD pipelines to streamline the data ingestion, processing, and deployment lifecycle. Utilized AWS services such as Lambda, S3, and Batch to automate data extraction, transformation, and storage. Integrated machine learning models for bacterial classification to support real-time analysis. Ensured the entire workflow was scalable, secure, and optimized for performance in a fully cloud-native environment.',
+		shortDescription:
+			'Cloud-based automation pipeline for analyzing bacterial composition in human samples using AWS serverless technologies and CI/CD workflows.',
+		links: [{ to: '', label: '' }],
+		logo: Assets.Amili,
+		name: 'Automated Pipeline for Microbiome Analysis',
+		period: {
+			from: new Date('2023-08-01'),
+			to: new Date('2025-03-31')
+		},
+		skills: getSkills('aws', 'python', 'docker', 'postgreSQL', 'git'),
+		type: 'Backend Automation'
+	},
+	{
+		slug: 'devops-security',
+		color: 'greenyellow',
+		description:
+			'We leverage AWS DevOps practices to automate the entire software delivery process by creating a robust CI/CD pipeline that integrates GitHub with AWS EC2, enabling seamless, rapid, and reliable deployment of our production application and MySQL database. This automation ensures consistent builds, testing, and deployment with minimal manual intervention, improving agility and operational efficiency. At the same time, we prioritize AWS Security by embedding continuous vulnerability scanning and monitoring within our AWS environments to proactively detect and remediate security risks. Using services like Amazon Inspector, AWS Security Hub, and GuardDuty, we identify potential vulnerabilities and suspicious activities, enforcing strict access controls, encryption, and compliance policies to protect our critical infrastructure and data. Together, these DevOps and Security measures ensure fast, safe, and resilient application delivery on AWS.',
+		shortDescription:
+			'We automate deployments from GitHub to AWS EC2 with CI/CD and continuously monitor AWS for security vulnerabilities to ensure fast, secure releases.',
+		links: [{ to: '', label: '' }],
+		logo: Assets.nayku,
+		name: 'AWS DevOps and AWS Security',
+		period: {
+			from: new Date('2025-03-01'),
+			to: new Date('2025-05-1')
+		},
+		skills: getSkills('aws', 'mySQL', 'git'),
+		type: 'Backend Automation'
 	}
 ];
 
