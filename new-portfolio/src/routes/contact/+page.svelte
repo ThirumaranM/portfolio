@@ -4,6 +4,7 @@
 	import SearchPage from '$lib/components/SearchPage.svelte';
 	import { title, contactInfo } from '@data/contact';
 	import CardDivider from '$lib/components/Card/CardDivider.svelte';
+	import emailjs from '@emailjs/browser';
 
 	let name = '';
 	let email = '';
@@ -13,15 +14,19 @@
 	let submitSuccess = false;
 	let submitError = '';
 
+	let form: HTMLFormElement; // Add this line to define the form variable
+
 	const handleSubmit = async () => {
 		isSubmitting = true;
 		submitError = '';
 		
-		// This is a placeholder for actual form submission logic
-		// You would typically send this data to a server endpoint
 		try {
-			// Simulate API call
-			await new Promise(resolve => setTimeout(resolve, 1000));
+			await emailjs.sendForm(
+				'service_184zkg5', 
+				'template_76b5snh', 
+				form, // This will now reference the form element
+				't9B5mfTrVa-blnugN' 
+			);
 			
 			// Reset form on success
 			name = '';
@@ -93,7 +98,7 @@
 							Thank you for your message! I'll get back to you soon.
 						</div>
 					{:else}
-						<form on:submit|preventDefault={handleSubmit} class="col gap-4">
+						<form bind:this={form} on:submit|preventDefault={handleSubmit} class="col gap-4">
 							{#if submitError}
 								<div class="bg-red-100 dark:bg-red-900 p-4 rounded-md text-red-800 dark:text-red-200">
 									{submitError}
@@ -105,6 +110,7 @@
 								<input 
 									type="text" 
 									id="name" 
+									name="name"
 									bind:value={name} 
 									required 
 									class="p-2 rounded-md bg-[var(--main)] border border-[var(--border)]"
@@ -116,6 +122,7 @@
 								<input 
 									type="email" 
 									id="email" 
+									name="email"
 									bind:value={email} 
 									required 
 									class="p-2 rounded-md bg-[var(--main)] border border-[var(--border)]"
@@ -127,6 +134,7 @@
 								<input 
 									type="text" 
 									id="subject" 
+									name="subject"
 									bind:value={subject} 
 									required 
 									class="p-2 rounded-md bg-[var(--main)] border border-[var(--border)]"
@@ -137,6 +145,7 @@
 								<label for="message" class="text-sm">Message</label>
 								<textarea 
 									id="message" 
+									name="message"
 									bind:value={message} 
 									required 
 									rows="5"
