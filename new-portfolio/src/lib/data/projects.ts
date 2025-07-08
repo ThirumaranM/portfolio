@@ -59,6 +59,23 @@ export const items: Array<Project> = [
 		},
 		skills: getSkills('aws', 'mySQL', 'git'),
 		type: 'Backend Automation'
+	},
+	{
+		slug: 'astrology',
+		color: 'blueviolet',
+		description:
+			'Designed and implemented the backend infrastructure for a feature-rich astrology platform supporting mobile OTP and SSO authentication (Google, Apple), master–child profile hierarchy, multilingual inference delivery, and encrypted personal data management. The system includes per-user API quota tracking, dynamic push notifications based on astrological events, and an internal Karma Points (KPoints) credit system to manage in-app purchases and AI interactions. Integrated third-party astrology services through proxy APIs while minimizing costs via static data caching. Also enabled real-time language translation using Amazon Translate, PDF report generation and storage, friend linking for compatibility features, and feedback tracking for AI-generated responses.',
+		shortDescription:
+			'Developed a secure, multilingual backend system with hierarchical user management, in-app credit system, and intelligent API proxying for an astrology-based mobile platform.',
+		links: [{ to: '', label: '' }],
+		logo: Assets.astrology,
+		name: 'Personalized Astrology Platform with SSO',
+		period: {
+			from: new Date('2025-03-01'),
+			to: new Date('2025-05-1')
+		},
+		skills: getSkills('aws', 'postgreSQL', 'git', 'python', 'shell-scripting'),
+		type: 'Backend Automation'
 	}
 ];
 

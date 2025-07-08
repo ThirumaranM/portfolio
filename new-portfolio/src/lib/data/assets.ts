@@ -84,6 +84,7 @@ const Assets = {
 	associate: a('associate.png'),
 	professioanl: a('professional.png'),
 	coaching: a('coaching.jpg'),
+	astrology: a('astrology.png')
 };
 
 export default Assets;
