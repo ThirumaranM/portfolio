@@ -71,8 +71,8 @@ export const items: Array<Project> = [
 		logo: Assets.astrology,
 		name: 'Personalized Astrology Platform with SSO',
 		period: {
-			from: new Date('2025-03-01'),
-			to: new Date('2025-05-1')
+			from: new Date('2025-05-01'),
+			to: new Date('2025-08-1')
 		},
 		skills: getSkills('aws', 'postgreSQL', 'git', 'python', 'shell-scripting'),
 		type: 'Backend Automation'
