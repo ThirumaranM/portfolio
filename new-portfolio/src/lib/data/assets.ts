@@ -78,12 +78,12 @@ const Assets = {
 	Meyi: a('meyi.png'),
 	Christ: a('christ.png'),
 	Jawahar: a('jawahar.png'),
-	Amili: a('amili.svg'),
+	healthcare: a('healthcare.jpg'),
 	Plant365: a('plant365.svg'),
 	screen1: a('1.png'),
 	associate: a('associate.png'),
 	professioanl: a('professional.png'),
-	nayku: a('nayku1.png'),
+	coaching: a('coaching.jpg'),
 };
 
 export default Assets;

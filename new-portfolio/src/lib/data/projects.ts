@@ -34,8 +34,8 @@ export const items: Array<Project> = [
 		shortDescription:
 			'Cloud-based automation pipeline for analyzing bacterial composition in human samples using AWS serverless technologies and CI/CD workflows.',
 		links: [{ to: '', label: '' }],
-		logo: Assets.Amili,
-		name: 'Automated Pipeline for Microbiome Analysis',
+		logo: Assets.healthcare,
+		name: 'Automated Pipeline for Healthcare Analysis',
 		period: {
 			from: new Date('2023-08-01'),
 			to: new Date('2025-03-31')
@@ -51,7 +51,7 @@ export const items: Array<Project> = [
 		shortDescription:
 			'We automate deployments from GitHub to AWS EC2 with CI/CD and continuously monitor AWS for security vulnerabilities to ensure fast, secure releases.',
 		links: [{ to: '', label: '' }],
-		logo: Assets.nayku,
+		logo: Assets.coaching,
 		name: 'AWS DevOps and AWS Security',
 		period: {
 			from: new Date('2025-03-01'),
