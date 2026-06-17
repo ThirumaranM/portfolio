@@ -9,6 +9,10 @@
 
 	$: currentRoute = $page.url.pathname;
 
+	$: isRouteActive = (to: string): boolean => {
+		return currentRoute === `${base}${to}` || (to !== '/' && currentRoute.startsWith(`${base}${to}`));
+	};
+
 	let expanded = false;
 
 	const toggleExpanded = (v?: boolean) => {
@@ -38,7 +42,11 @@
 		</div>
 		<div class="flex-row flex-1 self-center h-full justify-center hidden md:flex">
 			{#each items as item (item.title)}
-				<a href={`${base}${item.to}`} class="nav-menu-item !text-[var(--secondary-text)]">
+				<a
+					href={`${base}${item.to}`}
+					class="nav-menu-item !text-[var(--secondary-text)]"
+					class:active-route={isRouteActive(item.to)}
+				>
 					<UIcon icon={item.icon} classes="text-1.3em" />
 					<span class="nav-menu-item-label">{item.title}</span>
 				</a>
@@ -47,7 +55,7 @@
 		<div
 			class="row h-full justify-center items-stretch m-l-auto md:m-l-0 w-auto md:w-150px gap-1 text-1.15em"
 		>
-			<div class="row hidden md:flex">
+			<div class="row md:flex">
 				<a
 					href={`${base}/search`}
 					class="text-inherit col-center self-stretch px-2 hover:bg-[color:var(--main-hover)]"
@@ -82,6 +90,7 @@
 				<a
 					href={`${base}${item.to}`}
 					class="nav-menu-item !text-[var(--secondary-text)] gap-5"
+					class:active-route={isRouteActive(item.to)}
 					on:click={() => toggleExpanded(false)}
 				>
 					<UIcon icon={item.icon} classes="text-1.3em" />
@@ -123,17 +132,33 @@
 		z-index: 10;
 		padding: 0px 10px;
 		height: 50px;
-		border-bottom: 1px solid var(--secondary);
-		background-color: var(--main);
+		border-bottom: 1px solid var(--border);
+		background-color: var(--main-60);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		transition: background-color 0.3s, border-color 0.3s;
 
 		&-item {
 			text-decoration: none;
-			font-weight: 400;
+			font-weight: 500;
 			padding: 10px 20px;
 			color: inherit;
 			display: flex;
 			align-items: center;
-			border-bottom: 3px solid transparent;
+			position: relative;
+			overflow: hidden;
+			transition: color 0.2s, background-color 0.2s;
+
+			&::after {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				left: 50%;
+				width: 0;
+				height: 2px;
+				background: linear-gradient(90deg, var(--accent), var(--accent-text-hover));
+				transition: width 0.3s ease, left 0.3s ease;
+			}
 
 			&-label {
 				margin-left: 10px;
@@ -146,7 +171,24 @@
 			}
 
 			&:hover {
+				color: var(--main-text-hover) !important;
 				background-color: var(--main-hover);
+
+				&::after {
+					width: 100%;
+					left: 0;
+				}
+			}
+
+			&:global(.active-route) {
+				color: var(--main-text-hover) !important;
+				font-weight: 600;
+
+				&::after {
+					width: 100%;
+					left: 0;
+					height: 3px;
+				}
 			}
 		}
 	}
@@ -157,7 +199,9 @@
 		min-height: calc(100vh - 50px - 1px);
 		width: 100%;
 		position: absolute;
-		background-color: var(--main);
+		background-color: var(--main-close);
+		backdrop-filter: blur(16px);
+		-webkit-backdrop-filter: blur(16px);
 		top: 51px;
 		transform: translateY(-100vh);
 		transition-property: transform opacity;

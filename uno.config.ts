@@ -1,5 +1,6 @@
 import extractorSvelte from '@unocss/extractor-svelte';
 import { defineConfig, presetUno, presetWebFonts, presetIcons } from 'unocss';
+import { icons } from '@iconify-json/carbon';
 
 export default defineConfig({
 	extractors: [extractorSvelte()],
@@ -25,6 +26,9 @@ export default defineConfig({
 			}
 		}),
 		presetIcons({
+			collections: {
+				carbon: () => icons
+			},
 			extraProperties: {
 				display: 'inline-block',
 				'vertical-align': 'middle'

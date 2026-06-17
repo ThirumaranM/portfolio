@@ -15,9 +15,9 @@
 	export let bgImg: string | undefined = undefined;
 
 	$: computedColor = isHexColor(color) ? color : convertNamedToHexColor(color as NamedColor);
-	$: borderColor = changeColorOpacity(computedColor, 0.5);
-	$: dropColor = changeColorOpacity(computedColor, 0.15);
-	$: bgColor = changeColorOpacity(computedColor, 0.01);
+	$: borderColor = changeColorOpacity(computedColor, 0.6);
+	$: dropColor = changeColorOpacity(computedColor, 0.35);
+	$: bgColor = changeColorOpacity(computedColor, 0.04);
 
 	$: {
 		if (el) {
@@ -91,14 +91,19 @@
 		--rot-x: 0;
 		--rot-y: 0;
 
-		background: linear-gradient(90deg, var(--main) 0%, var(--main) 60%, var(--main-60) 100%),
+		background: linear-gradient(90deg, var(--main-close) 0%, var(--main-hover) 65%, var(--main-60) 100%),
 			no-repeat right 40% / 40% var(--bg-img);
+		backdrop-filter: blur(16px);
+		-webkit-backdrop-filter: blur(16px);
+		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+		transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
 		&-bg-img {
+			transition: all 0.3s ease;
 			&:hover {
 				background-color: var(--bg-color);
 				background-image: radial-gradient(
-					circle at var(--drop-x) var(--drop-y),
+					circle 120px at var(--drop-x) var(--drop-y),
 					var(--drop-color),
 					transparent
 				);
@@ -106,8 +111,9 @@
 		}
 
 		&:hover {
-			transform: perspective(1000px) rotateX(var(--rot-x)) rotateY(var(--rot-y)) scale(1.01);
-			border-color: var(--border-hover);
+			transform: perspective(1000px) rotateX(var(--rot-x)) rotateY(var(--rot-y)) scale(1.02);
+			border-color: var(--border-color, var(--border-hover));
+			box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12), 0 0 25px var(--drop-color);
 		}
 	}
 </style>

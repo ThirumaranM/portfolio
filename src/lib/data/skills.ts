@@ -114,6 +114,38 @@ export const items = [
 		logo: Assets.Flask,
 		name: 'Flask',
 		category: 'framework'
+	}),
+	defineSkill({
+		slug: 'nodejs',
+		color: 'green',
+		description: 'Node.js is an open-source, cross-platform JavaScript runtime environment that executes JavaScript code outside a web browser. It allows developers to use JavaScript to write command-line tools and for server-side scripting, facilitating the building of fast, scalable network applications.',
+		logo: Assets.NodeJs,
+		name: 'Node.js',
+		category: 'framework'
+	}),
+	defineSkill({
+		slug: 'mongodb',
+		color: 'green',
+		description: 'MongoDB is a source-available, document-oriented NoSQL database program. It uses JSON-like documents with optional schemas to store structured and unstructured data, offering high performance, high availability, and easy scalability for modern web applications.',
+		logo: Assets.MongoDB,
+		name: 'MongoDB',
+		category: 'db'
+	}),
+	defineSkill({
+		slug: 'redis',
+		color: 'red',
+		description: 'Redis is an open-source, in-memory data structure store used as a database, cache, message broker, and streaming engine. By keeping data in-memory, it provides sub-millisecond response times, enabling real-time applications in gaming, ad-tech, financial services, healthcare, and IoT.',
+		logo: Assets.Redis,
+		name: 'Redis',
+		category: 'db'
+	}),
+	defineSkill({
+		slug: 'kubernetes',
+		color: 'blue',
+		description: 'Kubernetes (also known as K8s) is an open-source container orchestration platform developed by Google. It automates container deployment, scaling, management, and load balancing, making it the industry standard for managing containerized applications in cloud-native environments.',
+		logo: Assets.Kubernetes,
+		name: 'Kubernetes',
+		category: 'devops'
 	})
 ] as const;
 

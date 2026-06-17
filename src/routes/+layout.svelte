@@ -12,6 +12,11 @@
 </script>
 
 <div class={`body contents ${$theme ? 'theme-dark' : 'theme-light'}`}>
+	<div class="ambient-glow">
+		<div class="ambient-blob blob-indigo"></div>
+		<div class="ambient-blob blob-cyan"></div>
+		<div class="ambient-blob blob-purple"></div>
+	</div>
 	<NavMenu />
 	<div class="content container"><slot /></div>
 </div>

@@ -84,10 +84,15 @@ const Assets = {
 	associate: a('associate.png'),
 	professioanl: a('professional.png'),
 	coaching: a('coaching.jpg'),
-	astrology: a('astrology.png')
+	astrology: a('astrology.png'),
+	RealTimeTracking: a('real_time_tracking.jpeg'),
+	AWSVPN: a('aws_vpn_logo.png'),
+	LandDeal: a('land_deal_logo.avif'),
 };
 
 export default Assets;
+
+// Projects moved to src/lib/data/projects.ts
 
 let currentTheme: boolean;
 

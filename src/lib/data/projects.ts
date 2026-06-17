@@ -15,7 +15,7 @@ export const items: Array<Project> = [
 		name: 'Sales Management Application',
 		period: {
 			from: new Date('2023-1-01'),
-			to: new Date('2023-07-30')
+			to: new Date('2024-01-30')
 		},
 		skills: getSkills('aws', 'python', 'git'),
 		type: 'Serverless Application',
@@ -38,7 +38,7 @@ export const items: Array<Project> = [
 		name: 'Automated Pipeline for Healthcare Analysis',
 		period: {
 			from: new Date('2023-08-01'),
-			to: new Date('2025-03-31')
+			to: new Date('2025-09-30')
 		},
 		skills: getSkills('aws', 'python', 'docker', 'postgreSQL', 'git'),
 		type: 'Backend Automation'
@@ -55,7 +55,7 @@ export const items: Array<Project> = [
 		name: 'AWS DevOps and AWS Security',
 		period: {
 			from: new Date('2025-03-01'),
-			to: new Date('2025-05-1')
+			to: new Date('2025-11-01')
 		},
 		skills: getSkills('aws', 'mySQL', 'git'),
 		type: 'Backend Automation'
@@ -72,10 +72,49 @@ export const items: Array<Project> = [
 		name: 'Personalized Astrology Platform with SSO',
 		period: {
 			from: new Date('2025-05-01'),
-			to: new Date('2025-08-1')
+			to: new Date('2026-02-01')
 		},
 		skills: getSkills('aws', 'postgreSQL', 'git', 'python', 'shell-scripting'),
 		type: 'Backend Automation'
+	},
+	{
+		slug: 'real-time-tracking',
+		color: '#1e90ff',
+		description: 'Free Real-Time Tracking of your connections application. Deployed on AWS ECS using Terraform for full infrastructure provisioning, integrating monitoring with CloudWatch and enabling scalable, low-latency tracking of network connections across regions. Added auto‑scaling groups for dynamic capacity, integrated CI/CD pipelines, configured Route 53 DNS routing, and set up comprehensive CloudWatch alarms for health monitoring.',
+		shortDescription: 'Real-time connection tracking deployed on AWS ECS using Terraform.',
+		links: [{ to: '', label: '' }],
+		logo: Assets.RealTimeTracking,
+		name: 'Real-Time Tracking Application',
+		period: { from: new Date('2025-11-01') },
+		skills: getSkills('aws', 'ecs', 'terraform', 'docker'),
+		type: 'Cloud Deployment',
+		screenshots: []
+	},
+	{
+		slug: 'aws-vpn-network',
+		color: '#8a2be2',
+		description: 'Network project deploying servers across multiple AWS accounts with AWS VPN linking on-premises servers to other clouds, using AWS CloudFormation for provisioning, ensuring secure, high-throughput connectivity and centralized management. Implemented cross‑account VPC peering, automated site‑to‑site VPN tunnel creation, applied least‑privilege IAM roles, enabled centralized logging with CloudWatch, and established monitoring dashboards for traffic and latency.',
+		shortDescription: 'Multi-account AWS server deployment with VPN connectivity using CloudFormation.',
+		links: [{ to: '', label: '' }],
+		logo: Assets.AWSVPN,
+		name: 'AWS VPN Multi-Account Network',
+		period: { from: new Date('2025-12-01') },
+		skills: getSkills('aws', 'vpn', 'cloudformation', 'networking'),
+		type: 'Infrastructure',
+		screenshots: []
+	},
+	{
+		slug: 'land-deal',
+		color: '#ff7f50',
+		description: 'Designed full backend and DevOps architecture for an internal real estate platform managing property evaluation, deal creation, and partner collaboration for 500+ active listings. Built RESTful APIs with Node.js/Express; integrated AWS ECS, S3, Lambda, and RDS to deliver a scalable, highly available system maintaining a 99.9% uptime SLA. Managed end-to-end DevOps including Docker containerization, CI/CD pipeline setup, and CloudFormation‑based AWS infrastructure provisioning, reducing deployment lead time by 50%.',
+		shortDescription: 'Real estate management platform deployed on EC2 with CloudFormation and full AWS DevOps.',
+		links: [{ to: '', label: '' }],
+		logo: Assets.LandDeal,
+		name: 'Land Deal – Real Estate Management Platform',
+		period: { from: new Date('2025-03-01'), to: new Date('2025-06-04') },
+		skills: getSkills('aws', 'ec2', 'ecs', 's3', 'rds', 'docker', 'cloudformation', 'nodejs'),
+		type: 'Backend Architecture',
+		screenshots: []
 	}
 ];
 

@@ -4,6 +4,23 @@ import { ContractType, type Experience } from '../types';
 
 export const items: Array<Experience> = [
 	{
+		slug: 'senior-cloud-devops',
+		company: 'Meyi Cloud Solutions Private Limited',
+		description: 'Leading cloud infrastructure and DevOps initiatives, overseeing architecture design, CI/CD pipelines, and team mentorship. Specialized in AWS DevOps practices, leveraging Terraform for infrastructure-as-code, and implementing robust CI/CD workflows with GitHub Actions and Docker.',
+		contract: ContractType.FullTime,
+		type: 'Software Development',
+		location: 'Puducherry',
+		period: {
+			from: new Date('2026-04-01')
+		},
+		skills: getSkills('aws', 'docker', 'terraform', 'kubernetes', 'python', 'git', 'shell-scripting'),
+		name: 'Senior Cloud & DevOps Engineer',
+		color: 'purple',
+		links: [],
+		logo: Assets.Meyi,
+		shortDescription: 'Leading cloud infrastructure and DevOps initiatives.'
+	},
+	{
 		slug: 'open-sourcer',
 		company: 'Meyi Cloud Solutions Private Limited',
 		description: 'Developed and maintained backend services using Python and AWS. Designed and implemented CI/CD pipelines for automated deployments. Built and optimized serverless architectures using AWS Lambda, API Gateway, and DynamoDB. Managed cloud infrastructure, ensuring scalability, security, and cost-efficiency. Collaborated with cross-functional teams todeliver high-performance applications. ',
@@ -11,7 +28,8 @@ export const items: Array<Experience> = [
 		type: 'Software Development',
 		location: 'Puducherry',
 		period: {
-			from: new Date('2023-04-01')
+			from: new Date('2023-04-01'),
+			to: new Date('2026-03-31')
 		},
 		skills: getSkills('aws', 'python', 'docker', 'postgreSQL', 'shell-scripting', 'git', 'Nginx', 'Flask'),
 		name: 'Associate Software Engineer',
