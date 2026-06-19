@@ -58,6 +58,35 @@
 	onMount(() => {
 		el.style.setProperty('margin', margin);
 		el.style.setProperty('--bg-img', bgImg ? `url(${bgImg})` : '');
+
+		// Scroll reveal entrance
+		el.style.opacity = '0';
+		el.style.transform = 'translateY(24px)';
+		el.style.transition = 'opacity 750ms cubic-bezier(0.16, 1, 0.3, 1), transform 750ms cubic-bezier(0.16, 1, 0.3, 1)';
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					el.style.opacity = '1';
+					el.style.transform = 'translateY(0)';
+					
+					// Reset transition after animation completes so hover tilt remains snappy
+					setTimeout(() => {
+						if (el) {
+							el.style.transition = 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)';
+						}
+					}, 800);
+					
+					observer.unobserve(el);
+				}
+			});
+		}, { threshold: 0.05 });
+
+		observer.observe(el);
+
+		return () => {
+			observer.disconnect();
+		};
 	});
 </script>
 
@@ -91,12 +120,12 @@
 		--rot-x: 0;
 		--rot-y: 0;
 
-		background: linear-gradient(90deg, var(--main-close) 0%, var(--main-hover) 65%, var(--main-60) 100%),
-			no-repeat right 40% / 40% var(--bg-img);
-		backdrop-filter: blur(16px);
-		-webkit-backdrop-filter: blur(16px);
-		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
-		transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+		background: var(--glass-bg) no-repeat right 40% / 40% var(--bg-img);
+		border: 1px solid var(--glass-border) !important;
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		box-shadow: 0 8px 32px 0 var(--glass-shadow);
+		transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 
 		&-bg-img {
 			transition: all 0.3s ease;
@@ -112,8 +141,8 @@
 
 		&:hover {
 			transform: perspective(1000px) rotateX(var(--rot-x)) rotateY(var(--rot-y)) scale(1.02);
-			border-color: var(--border-color, var(--border-hover));
-			box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12), 0 0 25px var(--drop-color);
+			border-color: var(--border-color, var(--border-hover)) !important;
+			box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16), 0 0 25px var(--drop-color);
 		}
 	}
 </style>

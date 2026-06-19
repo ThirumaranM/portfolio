@@ -1,6 +1,7 @@
 <script lang="ts">
 	import 'uno.css';
 	import NavMenu from '$lib/components/NavMenu/NavMenu.svelte';
+	import InteractiveParticles from '$lib/components/InteractiveParticles/InteractiveParticles.svelte';
 	import '$lib/index.scss';
 	import { onHydrated, theme } from '$lib/stores/theme';
 	import { onMount } from 'svelte';
@@ -17,6 +18,7 @@
 		<div class="ambient-blob blob-cyan"></div>
 		<div class="ambient-blob blob-purple"></div>
 	</div>
+	<InteractiveParticles />
 	<NavMenu />
 	<div class="content container"><slot /></div>
 </div>
