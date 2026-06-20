@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Education } from '$lib/types';
+	import type { Certifications } from '$lib/types';
 	import { computeExactDuration, getMonthName, getTimeDiff } from '$lib/utils/helpers';
 	import Card from '../Card/Card.svelte';
 	import CardLogo from '../Card/CardLogo.svelte';
@@ -11,7 +11,7 @@
 	import Chip from '../Chip/Chip.svelte';
 	import CardDivider from '../Card/CardDivider.svelte';
 
-	export let certification: Education;
+	export let certification: Certifications;
 
 	// Calculate duration
 	const exactDuration = computeExactDuration(certification.period.from, certification.period.to);

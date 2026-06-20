@@ -4,7 +4,7 @@
 	import { title } from '@data/certifications';
 	import { getTimeDiff } from '$lib/utils';
 
-	import type { Education } from '$lib/types';
+	import type { Certifications } from '$lib/types';
 
 	import CardLogo from '$lib/components/Card/CardLogo.svelte';
 	import MainTitle from '$lib/components/MainTitle/MainTitle.svelte';
@@ -18,7 +18,7 @@
 	// Add state for modal
 	let showBadgeModal = false;
 
-	export let data: { certification?: Education };
+	export let data: { certification?: Certifications };
 
 	$: computedTitle = data.certification
 		? `${data.certification.name} - ${title}`

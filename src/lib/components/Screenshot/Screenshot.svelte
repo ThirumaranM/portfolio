@@ -1,7 +1,9 @@
 <script lang="ts">
 	import UIcon from '../Icon/UIcon.svelte';
+	import type { Asset } from '$lib/types';
+	import { getAssetURL } from '$lib/data/assets';
 
-	export let screenshot: { src: string; label: string } | undefined = undefined;
+	export let screenshot: { src: Asset; label: string } | undefined = undefined;
 
 	export let onClose = () => {
 		screenshot = undefined;
@@ -43,7 +45,7 @@
 			</div>
 			<div
 				class="aspect-video col bg-contain w-100% rounded-xl bg-no-repeat bg-contains bg-center"
-				style={`background-image: url(${screenshot?.src});`}
+				style={`background-image: url(${screenshot ? getAssetURL(screenshot.src) : ''});`}
 			/>
 			<p
 				class="font-italic m-t-auto m-x-auto bg-[var(--main-60)] border-solid border-1px border-[var(--border)] p-x-5 p-2 rounded-xl"

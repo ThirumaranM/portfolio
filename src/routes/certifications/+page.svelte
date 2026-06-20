@@ -3,10 +3,10 @@
     import UIcon from '$lib/components/Icon/UIcon.svelte';
     import SearchPage from '$lib/components/SearchPage.svelte';
     import { items, title } from '@data/certifications';
-    import type { Education } from '$lib/types';
+    import type { Certifications } from '$lib/types';
     import { isBlank } from '@riadh-adrani/utils';
 
-    let result: Array<Education> = [...items];
+    let result: Array<Certifications> = [...items];
 
     const onSearch = (e: CustomEvent<{ search: string }>) => {
         const query = e.detail.search;
