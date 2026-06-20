@@ -59,37 +59,68 @@
         try {
             await navigator.clipboard.writeText(contactInfo.email);
             showCopyTooltip = true;
-            setTimeout(() => {
-                showCopyTooltip = false;
-            }, 2000);
+            setTimeout(() => { showCopyTooltip = false; }, 2000);
         } catch (err) {
             console.error('Failed to copy email: ', err);
         }
     };
+
+    const brandColor: Record<string, string> = {
+        linkedin: '#0a66c2',
+        github: '#6e40c9',
+        twitter: '#1d9bf0',
+        x: '#000000',
+        instagram: '#e1306c',
+        youtube: '#ff0000',
+    };
 </script>
 
 <SearchPage {title}>
-    <div class="col items-center relative mt-10 flex-1 w-full max-w-4xl mx-auto page-entrance">
-        <div class="contact-container">
+    <div class="contact-page col items-center flex-1 w-full">
 
-            <!-- ───── Contact Information ───── -->
+        <!-- ── Decorative background orbs ── -->
+        <div class="orb orb-1" aria-hidden="true"></div>
+        <div class="orb orb-2" aria-hidden="true"></div>
+        <div class="orb orb-3" aria-hidden="true"></div>
+
+        <!-- ── Available badge ── -->
+        <div class="availability-badge" role="status">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            Available for opportunities
+        </div>
+
+        <!-- ── Section heading ── -->
+        <div class="section-heading">
+            <h1 class="gradient-title">Let's Work Together</h1>
+            <p class="section-sub">Have a project in mind? Drop me a message and I'll get back to you within 24 hours.</p>
+        </div>
+
+        <!-- ── Two-column grid ── -->
+        <div class="contact-grid">
+
+            <!-- ── Left: Contact Info ── -->
             <Card>
-                <div class="flex-1 col gap-4 items-stretch">
-                    <h2 class="text-[1.5em] font-bold">Get in Touch</h2>
+                <div class="info-card-inner">
+                    <div class="info-header">
+                        <h2>Get in Touch</h2>
+                        <span class="response-time"> Usually responds within 24h</span>
+                    </div>
 
-                    <div class="contact-card-list">
+                    <div class="contact-items">
 
                         <!-- Email -->
-                        <div class="contact-item-card">
-                            <UIcon icon="i-carbon-email" classes="contact-icon text-red-500" />
-                            <div class="contact-details">
-                                <span class="contact-label">Email Address</span>
-                                <a href={`mailto:${contactInfo.email}`} class="contact-link">{contactInfo.email}</a>
+                        <div class="contact-item">
+                            <div class="item-icon-wrap email-icon">
+                                <UIcon icon="i-carbon-email" />
                             </div>
-                            <button on:click={copyEmail} class="copy-btn" title="Copy Email">
+                            <div class="item-details">
+                                <span class="item-label">Email</span>
+                                <a href={`mailto:${contactInfo.email}`} class="item-value link">{contactInfo.email}</a>
+                            </div>
+                            <button on:click={copyEmail} class="copy-btn" title="Copy email" aria-label="Copy email">
                                 {#if showCopyTooltip}
                                     <span class="copy-tooltip">Copied!</span>
-                                    <UIcon icon="i-carbon-checkmark" classes="text-green-500" />
+                                    <UIcon icon="i-carbon-checkmark" />
                                 {:else}
                                     <UIcon icon="i-carbon-copy" />
                                 {/if}
@@ -97,40 +128,46 @@
                         </div>
 
                         <!-- Phone -->
-                        <div class="contact-item-card">
-                            <UIcon icon="i-carbon-phone" classes="contact-icon text-green-500" />
-                            <div class="contact-details">
-                                <span class="contact-label">Phone Number</span>
-                                <a href={`tel:${contactInfo.phone}`} class="contact-link">{contactInfo.phone}</a>
+                        <div class="contact-item">
+                            <div class="item-icon-wrap phone-icon">
+                                <UIcon icon="i-carbon-phone" />
+                            </div>
+                            <div class="item-details">
+                                <span class="item-label">Phone</span>
+                                <a href={`tel:${contactInfo.phone}`} class="item-value link">{contactInfo.phone}</a>
                             </div>
                         </div>
 
                         <!-- Location -->
-                        <div class="contact-item-card location-pulse">
-                            <UIcon icon="i-carbon-location" classes="contact-icon text-blue-500" />
-                            <div class="contact-details">
-                                <span class="contact-label">Location</span>
-                                <span class="contact-val">{contactInfo.location}</span>
+                        <div class="contact-item location-item">
+                            <div class="item-icon-wrap location-icon">
+                                <UIcon icon="i-carbon-location" />
                             </div>
+                            <div class="item-details">
+                                <span class="item-label">Location</span>
+                                <span class="item-value">{contactInfo.location}</span>
+                            </div>
+                            <span class="live-badge" title="Current location">🟢 Live</span>
                         </div>
 
                     </div>
 
                     <CardDivider />
 
-                    <div class="mt-2">
-                        <h3 class="text-[1.1em] font-semibold mb-2">Connect with me</h3>
-                        <div class="social-links-grid">
+                    <div class="socials-section">
+                        <h3>Follow me</h3>
+                        <div class="social-grid">
                             {#each socialMediaList as social}
+                                {@const key = social.platform.toLowerCase()}
                                 <a
                                     href={social.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    class="social-badge"
-                                    style:--brand-color={social.platform.toLowerCase() === 'linkedin' ? '#0077b5' : '#8c52ff'}
+                                    class="social-pill"
+                                    style="--brand: {brandColor[key] ?? '#6366f1'}"
                                     title={social.platform}
                                 >
-                                    <UIcon icon={social.icon} classes="social-icon" />
+                                    <UIcon icon={social.icon} classes="sicon" />
                                     <span>{social.platform}</span>
                                 </a>
                             {/each}
@@ -139,88 +176,66 @@
                 </div>
             </Card>
 
-            <!-- ───── Contact Form ───── -->
+            <!-- ── Right: Form ── -->
             <Card>
-                <div class="flex-1 col gap-3 items-stretch">
-                    <h2 class="text-[1.5em] font-bold">Send a Message</h2>
-
-                    <!-- Progress bar -->
-                    <div class="progress-container">
-                        <div class="progress-fill" style="width: {progressWidth}%;"></div>
+                <div class="form-card-inner">
+                    <div class="form-header">
+                        <h2>Send a Message</h2>
+                        <!-- form fill progress -->
+                        <div class="fill-progress" title="{progressWidth}% complete">
+                            <div class="fill-track">
+                                <div class="fill-bar" style="width: {progressWidth}%;"></div>
+                            </div>
+                            <span class="fill-label">{filledCount}/4</span>
+                        </div>
                     </div>
 
                     {#if submitSuccess}
-                        <div class="success-message">
-                            <UIcon icon="i-carbon-checkmark-filled" classes="text-1.5em" />
-                            <span>Thank you! I'll get back to you soon.</span>
+                        <div class="success-banner">
+                            <div class="success-icon">
+                                <UIcon icon="i-carbon-checkmark-filled" />
+                            </div>
+                            <div>
+                                <strong>Message sent!</strong>
+                                <p>Thank you! I'll get back to you within 24 hours.</p>
+                            </div>
                         </div>
                     {:else}
-                        <form bind:this={form} on:submit|preventDefault={handleSubmit} class="col gap-1">
+                        <form bind:this={form} on:submit|preventDefault={handleSubmit} class="contact-form" novalidate>
 
                             {#if submitError}
-                                <div class="error-message">
-                                    <UIcon icon="i-carbon-warning-alt-filled" classes="text-1.5em" />
+                                <div class="error-banner">
+                                    <UIcon icon="i-carbon-warning-alt-filled" />
                                     <span>{submitError}</span>
                                 </div>
                             {/if}
 
-                            <!-- Name -->
-                            <div class="input-wrapper">
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    placeholder=" "
-                                    bind:value={name}
-                                    required
-                                />
-                                <label for="name">Name</label>
+                            <div class="form-row">
+                                <div class="field">
+                                    <input type="text" id="cf-name" name="name" placeholder=" " bind:value={name} required autocomplete="name" />
+                                    <label for="cf-name">Your Name</label>
+                                </div>
+                                <div class="field">
+                                    <input type="email" id="cf-email" name="email" placeholder=" " bind:value={email} required autocomplete="email" />
+                                    <label for="cf-email">Email Address</label>
+                                </div>
                             </div>
 
-                            <!-- Email -->
-                            <div class="input-wrapper">
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    placeholder=" "
-                                    bind:value={email}
-                                    required
-                                />
-                                <label for="email">Email</label>
+                            <div class="field">
+                                <input type="text" id="cf-subject" name="subject" placeholder=" " bind:value={subject} required />
+                                <label for="cf-subject">Subject</label>
                             </div>
 
-                            <!-- Subject -->
-                            <div class="input-wrapper">
-                                <input
-                                    type="text"
-                                    id="subject"
-                                    name="subject"
-                                    placeholder=" "
-                                    bind:value={subject}
-                                    required
-                                />
-                                <label for="subject">Subject</label>
+                            <div class="field textarea-field">
+                                <textarea id="cf-message" name="message" placeholder=" " bind:value={message} required rows="5" maxlength={MAX_MESSAGE}></textarea>
+                                <label for="cf-message">Your Message</label>
+                                <span class="char-count {message.length > MAX_MESSAGE - 50 ? 'near-limit' : ''}">{message.length}/{MAX_MESSAGE}</span>
                             </div>
 
-                            <!-- Message -->
-                            <div class="input-wrapper textarea-wrapper">
-                                <textarea
-                                    id="message"
-                                    name="message"
-                                    placeholder=" "
-                                    bind:value={message}
-                                    required
-                                    rows="5"
-                                ></textarea>
-                                <label for="message">Message</label>
-                                <span class="char-counter {message.length > MAX_MESSAGE - 50 ? 'warning' : ''}">{message.length} / {MAX_MESSAGE}</span>
-                            </div>
-
-                            <!-- Submit -->
-                            <button type="submit" disabled={isSubmitting} class="btn-submit">
+                            <button type="submit" class="send-btn" disabled={isSubmitting}>
+                                <span class="btn-shimmer" aria-hidden="true"></span>
                                 {#if isSubmitting}
-                                    <UIcon icon="i-carbon-progress-bar-round-spin" classes="animate-spin text-1.25em" />
+                                    <UIcon icon="i-carbon-progress-bar-round-spin" classes="spin-icon" />
                                     <span>Sending…</span>
                                 {:else}
                                     <UIcon icon="i-carbon-send" />
@@ -238,99 +253,272 @@
 </SearchPage>
 
 <style lang="scss">
-    /* ── Layout ── */
-    .contact-container {
+    /* ─────────────────────────────────────────
+       Page wrapper
+    ───────────────────────────────────────── */
+    .contact-page {
+        position: relative;
+        overflow: hidden;
+        padding: 40px 16px 60px;
+        gap: 28px;
+    }
+
+    /* ─────────────────────────────────────────
+       Decorative background orbs
+    ───────────────────────────────────────── */
+    .orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(80px);
+        pointer-events: none;
+        z-index: 0;
+        animation: drift 10s ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 70%);
+        top: -80px;
+        right: -80px;
+        animation-duration: 12s;
+    }
+
+    .orb-2 {
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(139,92,246,0.14) 0%, transparent 70%);
+        bottom: 60px;
+        left: -60px;
+        animation-duration: 15s;
+        animation-delay: -4s;
+    }
+
+    .orb-3 {
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(16,185,129,0.12) 0%, transparent 70%);
+        top: 40%;
+        left: 40%;
+        animation-duration: 18s;
+        animation-delay: -8s;
+    }
+
+    @keyframes drift {
+        from { transform: translate(0, 0) scale(1); }
+        to   { transform: translate(30px, 20px) scale(1.08); }
+    }
+
+    /* ─────────────────────────────────────────
+       Availability badge
+    ───────────────────────────────────────── */
+    .availability-badge {
+        position: relative;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 18px;
+        background: rgba(16, 185, 129, 0.08);
+        border: 1px solid rgba(16, 185, 129, 0.25);
+        border-radius: 99px;
+        font-size: 0.82em;
+        font-weight: 600;
+        color: #10b981;
+        letter-spacing: 0.3px;
+    }
+
+    .pulse-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #10b981;
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.4);
+            animation: pulse-ring 1.8s ease-out infinite;
+        }
+    }
+
+    @keyframes pulse-ring {
+        0%   { transform: scale(0.8); opacity: 1; }
+        100% { transform: scale(2.2); opacity: 0; }
+    }
+
+    /* ─────────────────────────────────────────
+       Section heading
+    ───────────────────────────────────────── */
+    .section-heading {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        max-width: 520px;
+    }
+
+    .gradient-title {
+        font-size: clamp(1.8em, 4vw, 2.6em);
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 50%, #34d399 100%);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: gradient-shift 4s ease infinite;
+        line-height: 1.2;
+        margin: 0 0 10px;
+    }
+
+    @keyframes gradient-shift {
+        0%   { background-position: 0% 50%; }
+        50%  { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .section-sub {
+        font-size: 0.95em;
+        color: var(--tertiary-text);
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* ─────────────────────────────────────────
+       Two-column grid
+    ───────────────────────────────────────── */
+    .contact-grid {
+        position: relative;
+        z-index: 1;
         display: grid;
-        grid-template-columns: 1fr 1.2fr;
-        gap: 32px;
+        grid-template-columns: 1fr 1.35fr;
+        gap: 28px;
         width: 100%;
-        max-width: 900px;
-        margin: 0 auto;
+        max-width: 960px;
 
         @media (max-width: 768px) {
             grid-template-columns: 1fr;
-            gap: 24px;
         }
     }
 
-    /* ── Contact Info Cards ── */
-    .contact-card-list {
+    /* ─────────────────────────────────────────
+       Info card
+    ───────────────────────────────────────── */
+    .info-card-inner {
         display: flex;
         flex-direction: column;
-        gap: 14px;
-        margin-top: 8px;
+        gap: 20px;
+        height: 100%;
     }
 
-    .contact-item-card {
+    .info-header {
+        h2 {
+            font-size: 1.25em;
+            font-weight: 700;
+            margin: 0 0 4px;
+        }
+    }
+
+    .response-time {
+        font-size: 0.78em;
+        color: var(--tertiary-text);
+    }
+
+    /* Contact items */
+    .contact-items {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .contact-item {
         display: flex;
         align-items: center;
-        gap: 16px;
-        padding: 14px 18px;
+        gap: 14px;
+        padding: 14px 16px;
+        border-radius: 14px;
         background: var(--glass-bg);
         border: 1px solid var(--glass-border);
-        border-radius: 12px;
-        position: relative;
         transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
         &:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px var(--glass-shadow);
-        }
-
-        :global(.contact-icon) {
-            font-size: 1.6em;
+            transform: translateX(4px);
+            border-color: var(--accent);
+            box-shadow: -4px 0 0 var(--accent), 0 4px 20px rgba(99,102,241,0.1);
         }
     }
 
-    .contact-details {
+    .item-icon-wrap {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2em;
+        flex-shrink: 0;
+
+        &.email-icon    { background: rgba(239, 68,  68,  0.12); color: #ef4444; }
+        &.phone-icon    { background: rgba(16,  185, 129, 0.12); color: #10b981; }
+        &.location-icon { background: rgba(99,  102, 241, 0.12); color: #6366f1; }
+    }
+
+    .item-details {
         flex: 1;
         min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
 
-        .contact-label {
-            font-size: 0.72em;
-            color: var(--tertiary-text);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-        }
+    .item-label {
+        font-size: 0.7em;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        font-weight: 700;
+        color: var(--tertiary-text);
+    }
 
-        .contact-link, .contact-val {
-            font-size: 0.92em;
-            color: var(--main-text);
-            font-weight: 500;
+    .item-value {
+        font-size: 0.9em;
+        font-weight: 500;
+        color: var(--main-text);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &.link {
             text-decoration: none;
-            margin-top: 2px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .contact-link:hover {
-            color: var(--accent-text-hover);
-            text-decoration: underline;
+            transition: color 0.2s;
+            &:hover { color: var(--accent); }
         }
     }
 
-    /* ── Copy Button ── */
+    .live-badge {
+        font-size: 0.7em;
+        font-weight: 600;
+        color: #10b981;
+        flex-shrink: 0;
+    }
+
+    /* Copy button */
     .copy-btn {
         background: transparent;
         border: none;
         color: var(--tertiary-text);
         cursor: pointer;
         padding: 6px;
-        border-radius: 6px;
+        border-radius: 8px;
         display: flex;
         align-items: center;
-        justify-content: center;
-        transition: all 0.2s ease;
         position: relative;
         flex-shrink: 0;
+        transition: all 0.2s;
 
         &:hover {
-            color: var(--main-text-hover);
+            color: var(--main-text);
             background: var(--main-hover);
         }
     }
@@ -341,14 +529,13 @@
         left: 50%;
         transform: translateX(-50%);
         background: var(--accent);
-        color: white;
-        padding: 4px 8px;
-        border-radius: 4px;
-        font-size: 0.72em;
+        color: #fff;
+        padding: 3px 8px;
+        border-radius: 6px;
+        font-size: 0.7em;
         white-space: nowrap;
         pointer-events: none;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        animation: tooltip-fade 0.2s ease forwards;
+        animation: tooltip-in 0.2s ease;
 
         &::after {
             content: '';
@@ -356,202 +543,319 @@
             top: 100%;
             left: 50%;
             transform: translateX(-50%);
-            border: 5px solid transparent;
+            border: 4px solid transparent;
             border-top-color: var(--accent);
         }
     }
 
-    @keyframes tooltip-fade {
+    @keyframes tooltip-in {
         from { opacity: 0; transform: translate(-50%, 4px); }
         to   { opacity: 1; transform: translate(-50%, 0); }
     }
 
-    /* ── Social Badges ── */
-    .social-links-grid {
+    /* Socials */
+    .socials-section {
+        h3 {
+            font-size: 0.85em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--tertiary-text);
+            margin: 0 0 10px;
+        }
+    }
+
+    .social-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .social-pill {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 14px;
+        border-radius: 12px;
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        text-decoration: none;
+        color: var(--secondary-text);
+        font-size: 0.88em;
+        font-weight: 500;
+        transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+        overflow: hidden;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--brand);
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+
+        &:hover {
+            border-color: var(--brand);
+            color: var(--brand);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1), 0 0 12px color-mix(in srgb, var(--brand) 30%, transparent);
+
+            &::before { opacity: 0.07; }
+        }
+
+        :global(.sicon) {
+            font-size: 1.15em;
+            position: relative;
+            z-index: 1;
+        }
+
+        span { position: relative; z-index: 1; }
+    }
+
+    /* ─────────────────────────────────────────
+       Form card
+    ───────────────────────────────────────── */
+    .form-card-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        height: 100%;
+    }
+
+    .form-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         gap: 12px;
-        margin-top: 12px;
+
+        h2 {
+            font-size: 1.25em;
+            font-weight: 700;
+            margin: 0;
+        }
+    }
+
+    .fill-progress {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+    }
+
+    .fill-track {
+        width: 80px;
+        height: 5px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 99px;
+        overflow: hidden;
+    }
+
+    .fill-bar {
+        height: 100%;
+        border-radius: 99px;
+        background: linear-gradient(90deg, var(--accent), #a78bfa);
+        transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .fill-label {
+        font-size: 0.75em;
+        font-weight: 600;
+        color: var(--tertiary-text);
+    }
+
+    /* Contact form */
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
 
         @media (max-width: 480px) {
             grid-template-columns: 1fr;
         }
     }
 
-    .social-badge {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 12px;
-        background: var(--glass-bg);
-        border: 1px solid var(--glass-border);
-        border-radius: 12px;
-        text-decoration: none;
-        color: var(--secondary-text);
-        font-weight: 500;
-        font-size: 0.9em;
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-
-        &:hover {
-            color: var(--main-text-hover);
-            border-color: var(--brand-color);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 0 15px var(--brand-color);
-        }
-
-        :global(.social-icon) {
-            font-size: 1.25em;
-        }
-    }
-
-    /* ── Form Progress Bar ── */
-    .progress-container {
-        width: 100%;
-        height: 4px;
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 4px;
-        overflow: hidden;
-        margin-bottom: 4px;
-    }
-
-    .progress-fill {
-        height: 100%;
-        border-radius: 4px;
-        background: linear-gradient(90deg, var(--accent), var(--accent-text-hover));
-        transition: width 0.35s ease;
-    }
-
-    /* ── Input Fields ── */
-    .input-wrapper {
+    /* Floating-label fields */
+    .field {
         position: relative;
-        margin-bottom: 6px;
 
         input, textarea {
             width: 100%;
-            padding: 14px 12px 10px;
+            padding: 16px 14px 8px;
             background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
+            border: 1.5px solid var(--glass-border);
+            border-radius: 10px;
             color: var(--main-text);
-            outline: none;
-            font-size: 0.93em;
             font-family: inherit;
-            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            font-size: 0.93em;
+            outline: none;
+            transition: border-color 0.25s, box-shadow 0.25s;
             box-sizing: border-box;
+            line-height: 1.5;
 
             &:focus {
                 border-color: var(--accent);
-                box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+                box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15), 0 2px 12px rgba(99, 102, 241, 0.08);
             }
 
             &:focus ~ label,
             &:not(:placeholder-shown) ~ label {
-                top: -9px;
-                left: 8px;
-                font-size: 0.72em;
-                color: var(--accent-text);
-                background: var(--main);
-                padding: 0 5px;
-                border-radius: 4px;
-                border: 1px solid var(--glass-border);
+                top: 6px;
+                font-size: 0.68em;
+                color: var(--accent);
+                font-weight: 600;
             }
         }
 
         label {
             position: absolute;
-            left: 12px;
-            top: 13px;
+            left: 14px;
+            top: 14px;
+            font-size: 0.9em;
             color: var(--tertiary-text);
             pointer-events: none;
             transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-            font-size: 0.93em;
         }
     }
 
-    .textarea-wrapper {
+    .textarea-field {
         textarea {
             resize: none;
             padding-bottom: 26px;
         }
 
-        .char-counter {
+        .char-count {
             position: absolute;
-            right: 10px;
-            bottom: 8px;
-            font-size: 0.7em;
+            right: 12px;
+            bottom: 9px;
+            font-size: 0.68em;
             color: var(--tertiary-text);
             pointer-events: none;
+            transition: color 0.2s;
 
-            &.warning {
-                color: var(--accent);
-                font-weight: 600;
+            &.near-limit {
+                color: #f59e0b;
+                font-weight: 700;
             }
         }
     }
 
-    /* ── Submit Button ── */
-    .btn-submit {
+    /* Send button */
+    .send-btn {
+        position: relative;
+        overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 10px;
         width: 100%;
-        padding: 13px 24px;
-        margin-top: 6px;
+        padding: 14px 24px;
         border: none;
-        border-radius: 8px;
+        border-radius: 10px;
         font-size: 0.95em;
-        font-weight: 600;
+        font-weight: 700;
         font-family: inherit;
         color: #ffffff;
-        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-text-hover) 100%);
+        background: linear-gradient(135deg, var(--accent) 0%, #7c3aed 50%, #a78bfa 100%);
+        background-size: 200% 200%;
         cursor: pointer;
-        transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        letter-spacing: 0.3px;
 
         &:hover:not(:disabled) {
+            background-position: right center;
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        &:active:not(:disabled) {
+            transform: translateY(0);
         }
 
         &:disabled {
-            opacity: 0.6;
+            opacity: 0.55;
             cursor: not-allowed;
         }
     }
 
-    /* ── Location Pulse ── */
-    @keyframes pulseGlow {
-        0%   { box-shadow: 0 0 0 0   rgba(99, 102, 241, 0.4); }
-        50%  { box-shadow: 0 0 0 8px rgba(99, 102, 241, 0);   }
-        100% { box-shadow: 0 0 0 0   rgba(99, 102, 241, 0);   }
+    /* Shimmer sweep */
+    .btn-shimmer {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+        transform: skewX(-20deg);
+        animation: shimmer 2.5s ease-in-out infinite;
     }
 
-    .location-pulse {
-        animation: pulseGlow 2.5s infinite;
+    @keyframes shimmer {
+        0%   { left: -100%; }
+        60%  { left: 160%;  }
+        100% { left: 160%;  }
     }
 
-    /* ── Success / Error Banners ── */
-    .success-message, .error-message {
-        padding: 14px 16px;
-        border-radius: 10px;
-        font-size: 0.93em;
-        line-height: 1.5;
+    :global(.spin-icon) {
+        animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+    }
+
+    /* ─────────────────────────────────────────
+       Success / Error banners
+    ───────────────────────────────────────── */
+    .success-banner {
         display: flex;
         align-items: center;
-        gap: 12px;
-        border: 1px solid transparent;
-    }
-
-    .success-message {
-        background: rgba(16, 185, 129, 0.1);
-        border-color: rgba(16, 185, 129, 0.25);
+        gap: 16px;
+        padding: 20px;
+        border-radius: 14px;
+        background: rgba(16, 185, 129, 0.08);
+        border: 1px solid rgba(16, 185, 129, 0.25);
         color: #10b981;
+        animation: slide-in 0.4s ease;
+
+        strong { display: block; font-size: 1em; margin-bottom: 2px; }
+        p      { margin: 0; font-size: 0.85em; opacity: 0.85; }
     }
 
-    .error-message {
-        background: rgba(239, 68, 68, 0.1);
-        border-color: rgba(239, 68, 68, 0.25);
+    .success-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(16, 185, 129, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4em;
+        flex-shrink: 0;
+    }
+
+    .error-banner {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        background: rgba(239, 68, 68, 0.08);
+        border: 1px solid rgba(239, 68, 68, 0.25);
         color: #ef4444;
+        font-size: 0.88em;
+    }
+
+    @keyframes slide-in {
+        from { opacity: 0; transform: translateY(8px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
 </style>
