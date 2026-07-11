@@ -31,7 +31,7 @@
 	] as const;
 </script>
 
-<Card href="/certifications/{certification.slug}" color={certification.color}>
+<Card href="{base}/certifications/{certification.slug}" color={certification.color}>
     <div class="flex flex-row items-start gap-5">
         <div class="flex-shrink-0">
             <CardLogo src={getAssetURL(certification.logo)} alt={certification.organization} size={55} />
