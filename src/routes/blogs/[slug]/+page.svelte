@@ -175,44 +175,6 @@
 		<Markdown content={post.content} />
 	</div>
 
-	<!-- Author Bio Footer Card -->
-	<div class="p-6 rounded-2xl border border-[var(--border)] bg-[var(--main-hover)] shadow-lg mb-12 flex flex-col sm:flex-row items-center sm:items-start gap-5">
-		<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-500 flex items-center justify-center text-white font-extrabold text-xl shadow-xl ring-2 ring-indigo-500/40 shrink-0">
-			TM
-		</div>
-		<div class="flex-1 text-center sm:text-left">
-			<div class="text-xs font-mono text-indigo-400 font-bold uppercase tracking-wider mb-1">Written By</div>
-			<h3 class="text-lg font-bold text-[var(--main-text)] mb-2">Thirumaran M</h3>
-			<p class="text-xs text-[var(--secondary-text)] leading-relaxed mb-4">
-				Senior Cloud & DevOps Engineer with 4+ years of experience designing, automating, and scaling cloud-native infrastructure on AWS, Terraform, Docker, and Kubernetes.
-			</p>
-			<div class="flex flex-wrap justify-center sm:justify-start gap-3">
-				<a
-					href="https://www.linkedin.com/in/thiru-maran-m-90769a227/"
-					target="_blank"
-					rel="noreferrer"
-					class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 border border-indigo-500/20 decoration-none transition-all"
-				>
-					<UIcon icon="i-carbon-logo-linkedin" /> LinkedIn
-				</a>
-				<a
-					href="https://github.com/ThirumaranM"
-					target="_blank"
-					rel="noreferrer"
-					class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono bg-[var(--main-close)] hover:bg-[var(--tertiary-hover)] text-[var(--secondary-text)] border border-[var(--border)] decoration-none transition-all"
-				>
-					<UIcon icon="i-carbon-logo-github" /> GitHub
-				</a>
-				<a
-					href="mailto:maranthiru691@gmail.com"
-					class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono bg-[var(--main-close)] hover:bg-[var(--tertiary-hover)] text-[var(--secondary-text)] border border-[var(--border)] decoration-none transition-all"
-				>
-					<UIcon icon="i-carbon-email" /> Email
-				</a>
-			</div>
-		</div>
-	</div>
-
 	<!-- Next / Previous Article Footer Links -->
 	<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 		{#if prevPost}
