@@ -94,3 +94,15 @@ export interface Certifications<S extends string = string> extends Item<S> {
 	verificationUrl?: string;
 	badgeImageUrl?: Asset;
 }
+
+export interface BlogPost<S extends string = string> {
+	slug: S;
+	title: string;
+	date: Date;
+	readingTime: string;
+	summary: string;
+	content: string;
+	tags: Array<Skill<S>>;
+	color?: Color;
+	coverImage?: Asset;
+}

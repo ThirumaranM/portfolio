@@ -4,6 +4,7 @@ export const items = [
 	{ title: 'Experience', to: '/experience', icon: 'i-carbon-development' },
 	{ title: 'Education', to: '/education', icon: 'i-carbon-education' },
 	{ title: 'Certifications', to: '/certifications', icon: 'i-carbon-certificate' },
+	{ title: 'Blogs', to: '/blogs', icon: 'i-carbon-notebook' },
 	{ title: 'Contact', to: '/contact', icon: 'i-carbon-email' },
 	{ title: 'Resumé', to: '/resume', icon: 'i-carbon-result' }
 ] as const;

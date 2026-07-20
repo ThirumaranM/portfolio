@@ -3,12 +3,15 @@
 	import Icon from '$lib/components/Icon/Icon.svelte';
 	import MainTitle from '$lib/components/MainTitle/MainTitle.svelte';
 	import TextCycler from '$lib/components/TextCycler/TextCycler.svelte';
+	import MetricsBar from '$lib/components/MetricsBar/MetricsBar.svelte';
+	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import { titleSuffix } from '@data/app';
 	import { links, description, position, lastName, name, title, skills } from '@data/home';
 	import { items as skillsItems } from '@data/skills';
 	import { useTitle } from '$lib/utils/helpers';
 	import { isBlank } from '@riadh-adrani/utils';
 	import { getPlatfromIcon } from '$lib/utils';
+	import { base } from '$app/paths';
 
 	const isEmail = (email: string): boolean => {
 		const reg =
@@ -28,30 +31,70 @@
 <svelte:head>
 	<title>{useTitle(title, titleSuffix)}</title>
 </svelte:head>
-<div
-	class="col self-center flex-1 md:flex-row md:slef-stretch justify-center lg:justify-between items-center p-y-0px p-x-10px page-entrance"
->
-	<div class="md:flex-1 gap-10px">
-		<MainTitle classes="md:text-left ">{name} {lastName},</MainTitle>
-		<p class="text-center md:text-left text-[1.25em] font-medium min-h-[30px] flex flex-row items-center justify-center md:justify-start gap-2">
-			<span class="text-[var(--secondary-text)]">I am a</span>
-			<TextCycler items={roles} />
-		</p>
-		<p class="text-[var(--tertiary-text)]  text-center md:text-left text-[1.2em] font-extralight">{description}</p>
-		<div class="row justify-center md:justify-start p-y-15px p-x-0px gap-3">
-			{#each links as link}
+
+<div class="page-entrance px-4 py-6 md:py-10">
+	<!-- Hero Section -->
+	<div
+		class="col self-center flex-1 md:flex-row md:self-stretch justify-center lg:justify-between items-center gap-8 mb-12"
+	>
+		<div class="md:flex-1 gap-4">
+			<MainTitle classes="md:text-left ">{name} {lastName}</MainTitle>
+			<p
+				class="text-center md:text-left text-[1.25em] font-medium min-h-[36px] flex flex-row items-center justify-center md:justify-start gap-2 my-2"
+			>
+				<span class="text-[var(--secondary-text)]">I am a</span>
+				<TextCycler items={roles} />
+			</p>
+			<p class="text-[var(--tertiary-text)] text-center md:text-left text-[1.15em] font-extralight leading-relaxed max-w-3xl mb-6">
+				{description}
+			</p>
+
+			<!-- Action CTA Buttons -->
+			<div class="flex flex-wrap items-center justify-center md:justify-start gap-3 mb-6">
 				<a
-					class="social-link decoration-none"
-					href={`${isEmail(link.link) ? 'mailto:' : ''}${link.link}`}
-					target="_blank"
-					rel="noreferrer"
+					href={`${base}/projects`}
+					class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-500/25 flex items-center gap-2 decoration-none transition-all hover:-translate-y-0.5"
 				>
-					<Icon icon={getPlatfromIcon(link.platform)} color={'var(--accent-text)'} size={'20px'} />
+					<UIcon icon="i-carbon-rocket" classes="text-base" /> View Projects
 				</a>
-			{/each}
+
+				<a
+					href={`${base}/experience`}
+					class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-500/25 flex items-center gap-2 decoration-none transition-all hover:-translate-y-0.5"
+				>
+					<UIcon icon="i-carbon-briefcase" classes="text-base" /> Work Experience
+				</a>
+
+				<a
+					href={`${base}/contact`}
+					class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-500/25 flex items-center gap-2 decoration-none transition-all hover:-translate-y-0.5"
+				>
+					<UIcon icon="i-carbon-email" classes="text-base" /> Contact Me
+				</a>
+			</div>
+
+			<!-- Social Links -->
+			<div class="row justify-center md:justify-start p-y-5px p-x-0px gap-3">
+				{#each links as link}
+					<a
+						class="social-link decoration-none"
+						href={isEmail(link.link) ? `https://mail.google.com/mail/?view=cm&fs=1&to=${link.link}` : link.link}
+						target="_blank"
+						rel="noreferrer"
+						title={link.platform}
+					>
+						<Icon icon={getPlatfromIcon(link.platform)} color={'var(--accent-text)'} size={'20px'} />
+					</a>
+				{/each}
+			</div>
 		</div>
+
+		<!-- Skill Carousel -->
+		<Carrousel items={skills ?? skillsItems} />
 	</div>
-	<Carrousel items={skills ?? skillsItems} />
+
+	<!-- High-Impact Engineering Metrics Bar -->
+	<MetricsBar />
 </div>
 
 <style lang="scss">

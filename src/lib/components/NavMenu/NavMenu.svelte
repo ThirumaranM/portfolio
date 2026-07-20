@@ -55,16 +55,18 @@
 		<div
 			class="row h-full justify-center items-stretch m-l-auto md:m-l-0 w-auto md:w-150px gap-1 text-1.15em"
 		>
-			<div class="row md:flex">
+			<div class="row md:flex items-center">
 				<a
 					href={`${base}/search`}
 					class="text-inherit col-center self-stretch px-2 hover:bg-[color:var(--main-hover)]"
+					title="Search site"
 				>
 					<UIcon icon="i-carbon-search" />
 				</a>
 				<button
 					class="bg-transparent text-1em border-none cursor-pointer hover:bg-[color:var(--main-hover)] text-[var(--secondary-text)] px-2"
 					on:click={() => toggleTheme()}
+					title="Toggle theme"
 				>
 					{#if $theme}
 						<UIcon icon="i-carbon-moon" />
