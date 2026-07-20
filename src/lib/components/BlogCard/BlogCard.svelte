@@ -25,8 +25,8 @@
 		</div>
 
 		{#if post.coverImage}
-			<div class="mb-4 rounded-xl overflow-hidden border border-[var(--border)] max-h-48">
-				<img src={`${base}${post.coverImage}`} alt={post.title} class="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-300" />
+			<div class="mb-4 rounded-xl overflow-hidden border border-[var(--border)] bg-[#070a12] flex items-center justify-center">
+				<img src={`${base}${post.coverImage}`} alt={post.title} class="w-full h-48 sm:h-52 object-contain group-hover:scale-105 transition-transform duration-300" />
 			</div>
 		{/if}
 

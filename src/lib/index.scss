@@ -177,14 +177,17 @@ body {
 	font-size: 1.05rem;
 	line-height: 1.85;
 	color: var(--secondary-text);
-	overflow-y: auto !important;
+	max-width: 100%;
+	overflow-x: hidden !important;
 
 	code[class*='language-'],
 	pre[class*='language-'] {
 		font-family: 'Space Mono', monospace;
 		font-size: 0.88em;
 		line-height: 1.65;
-		overflow-x: auto;
+		white-space: pre-wrap !important;
+		word-break: break-word !important;
+		overflow-x: hidden !important;
 		min-width: 0px;
 		color: #f8fafc;
 	}
@@ -354,6 +357,34 @@ body {
 		border: none;
 		border-top: 1px solid var(--border);
 		margin: 2.5em 0;
+	}
+
+	& table {
+		width: 100%;
+		border-collapse: collapse;
+		margin: 1.8em 0;
+		font-size: 0.95em;
+		background: var(--main-hover);
+		border-radius: 0.75rem;
+		overflow: hidden;
+		border: 1px solid var(--border);
+
+		th,
+		td {
+			padding: 10px 16px;
+			text-align: left;
+			border-bottom: 1px solid var(--border);
+		}
+
+		th {
+			background-color: rgba(99, 102, 241, 0.1);
+			color: var(--main-text);
+			font-weight: 600;
+		}
+
+		tr:last-child td {
+			border-bottom: none;
+		}
 	}
 }
 
