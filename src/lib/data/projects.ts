@@ -63,8 +63,13 @@ export const items: Array<Project> = [
 	{
 		slug: 'astrology',
 		color: 'blueviolet',
-		description:
-			'Designed and implemented the backend infrastructure for a feature-rich astrology platform supporting mobile OTP and SSO authentication (Google, Apple), master–child profile hierarchy, multilingual inference delivery, and encrypted personal data management. The system includes per-user API quota tracking, dynamic push notifications based on astrological events, and an internal Karma Points (KPoints) credit system to manage in-app purchases and AI interactions. Integrated third-party astrology services through proxy APIs while minimizing costs via static data caching. Also enabled real-time language translation using Amazon Translate, PDF report generation and storage, friend linking for compatibility features, and feedback tracking for AI-generated responses.',
+		description: `Designed and implemented the backend architecture for a feature-rich astrology platform supporting secure mobile OTP authentication, Single Sign-On (Google and Apple), master–child profile management, and encrypted user data storage. Developed scalable RESTful APIs using Node.js and integrated PostgreSQL/MySQL for efficient data management.
+
+Built a robust AI-driven workflow supporting multilingual horoscope generation, real-time language translation using Amazon Translate, and automated PDF report generation with secure storage on Amazon S3. Optimized API costs by implementing intelligent caching strategies and proxy integrations with third-party astrology providers while maintaining high availability and low response times.
+
+Implemented a comprehensive user engagement system, including dynamic push notifications based on astrological events, per-user API usage tracking and quota management, a Karma Points (KPoints) wallet for managing in-app purchases and AI interactions, and friend-linking capabilities for compatibility analysis. Developed feedback collection mechanisms to continuously improve AI-generated responses and recommendation quality.
+
+Designed the backend with a scalable, secure, and modular architecture, incorporating JWT-based authentication, role-based access control, centralized error handling, and logging to ensure maintainability, performance, and production reliability.`,
 		shortDescription:
 			'Developed a secure, multilingual backend system with hierarchical user management, in-app credit system, and intelligent API proxying for an astrology-based mobile platform.',
 		links: [{ to: '', label: '' }],
@@ -80,7 +85,15 @@ export const items: Array<Project> = [
 	{
 		slug: 'real-time-tracking',
 		color: '#1e90ff',
-		description: 'Free Real-Time Tracking of your connections application. Deployed on AWS ECS using Terraform for full infrastructure provisioning, integrating monitoring with CloudWatch and enabling scalable, low-latency tracking of network connections across regions. Added auto‑scaling groups for dynamic capacity, integrated CI/CD pipelines, configured Route 53 DNS routing, and set up comprehensive CloudWatch alarms for health monitoring.',
+		description: `Designed and deployed a real-time connection tracking platform on AWS using a microservices architecture hosted on Amazon ECS. Provisioned the complete infrastructure using Terraform, enabling consistent, repeatable, and automated deployments across environments.
+
+Implemented containerized microservices with Application Load Balancers, Auto Scaling, and Amazon Route 53 to deliver a highly available, scalable, and low-latency application. Built and maintained CI/CD pipelines to automate application deployment, reducing release time and ensuring reliable rollouts.
+
+Integrated Amazon CloudWatch for centralized logging, metrics collection, dashboards, and proactive alerting to monitor application health, infrastructure performance, and service availability. Configured comprehensive CloudWatch alarms and ECS service monitoring to quickly identify and resolve operational issues.
+
+Conducted extensive performance and load testing using Locust to simulate real-world traffic patterns, validate application scalability, and benchmark API response times. Tuned ECS Auto Scaling policies based on CPU utilization, memory usage, and request load, ensuring optimal resource utilization while maintaining application performance under high concurrency.
+
+Collaborated with development teams to optimize container performance, troubleshoot production issues, and improve deployment reliability, resulting in a resilient, production-ready microservices platform capable of handling increasing traffic demands.`,
 		shortDescription: 'Real-time connection tracking deployed on AWS ECS using Terraform.',
 		links: [{ to: '', label: '' }],
 		logo: Assets.RealTimeTracking,
@@ -93,8 +106,15 @@ export const items: Array<Project> = [
 	{
 		slug: 'aws-vpn-network',
 		color: '#8a2be2',
-		description: 'Network project deploying servers across multiple AWS accounts with AWS VPN linking on-premises servers to other clouds, using AWS CloudFormation for provisioning, ensuring secure, high-throughput connectivity and centralized management. Implemented cross‑account VPC peering, automated site‑to‑site VPN tunnel creation, applied least‑privilege IAM roles, enabled centralized logging with CloudWatch, and established monitoring dashboards for traffic and latency.',
-		shortDescription: 'Multi-account AWS server deployment with VPN connectivity using CloudFormation.',
+		description: `Designed and deployed a secure, scalable network infrastructure across multiple AWS accounts, integrating on-premises environments with AWS and other cloud platforms through highly available Site-to-Site VPN connections. Leveraged AWS CloudFormation to automate infrastructure provisioning, ensuring consistency, repeatability, and faster deployments.
+
+Implemented cross-account AWS Transit Gateway architecture to centralize network connectivity and simplify routing between multiple VPCs and hybrid environments. Automated VPN tunnel creation, route propagation, and network configuration to reduce manual effort and improve operational efficiency.
+
+Applied least-privilege IAM roles and security best practices to enable secure cross-account resource access while maintaining compliance and governance standards. Configured centralized logging using Amazon CloudWatch for VPN, Transit Gateway, and VPC network events, enabling proactive monitoring and troubleshooting.
+
+Developed monitoring dashboards to track VPN tunnel health, network throughput, latency, and connectivity status, reducing incident response time and improving operational visibility. Collaborated with infrastructure and security teams to troubleshoot hybrid networking issues, optimize routing performance, and ensure high availability across production environments.`,
+		shortDescription:
+			'Multi-account AWS server deployment with VPN connectivity using CloudFormation.',
 		links: [{ to: '', label: '' }],
 		logo: Assets.AWSVPN,
 		name: 'AWS VPN Multi-Account Network',
@@ -106,8 +126,15 @@ export const items: Array<Project> = [
 	{
 		slug: 'land-deal',
 		color: '#ff7f50',
-		description: 'Designed full backend and DevOps architecture for an internal real estate platform managing property evaluation, deal creation, and partner collaboration for 500+ active listings. Built RESTful APIs with Node.js/Express; integrated AWS ECS, S3, Lambda, and RDS to deliver a scalable, highly available system maintaining a 99.9% uptime SLA. Managed end-to-end DevOps including Docker containerization, CI/CD pipeline setup, and CloudFormation‑based AWS infrastructure provisioning, reducing deployment lead time by 50%.',
-		shortDescription: 'Real estate management platform deployed on EC2 with CloudFormation and full AWS DevOps.',
+		description: `Designed and developed a full-stack real estate platform for managing property evaluations, deal creation, customer interactions, and partner collaboration, supporting over 500 active property listings. Built responsive frontend components and RESTful backend APIs using Node.js and Express.js, delivering a seamless user experience and efficient business workflows.
+
+Architected and deployed the application on AWS EC2 with Amazon RDS for relational data storage and Amazon S3 for secure document and media storage, ensuring high availability, scalability, and reliable application performance. Integrated AWS Lambda for background processing and event-driven automation where required.
+
+Managed the complete DevOps lifecycle, including Docker containerization, CI/CD pipeline implementation, infrastructure provisioning with AWS CloudFormation, application deployment, monitoring, and server maintenance. Configured Nginx as a reverse proxy, implemented SSL/TLS for secure communication, and established CloudWatch monitoring and logging to improve operational visibility.
+
+Optimized deployment workflows and infrastructure automation, reducing deployment time by approximately 50% while maintaining a highly available and secure production environment.`,
+		shortDescription:
+			'Real estate management platform deployed on EC2 with CloudFormation and full AWS DevOps.',
 		links: [{ to: '', label: '' }],
 		logo: Assets.LandDeal,
 		name: 'Land Deal – Real Estate Management Platform',
