@@ -19,7 +19,7 @@ Beyond technical responsibilities, I collaborate with stakeholders to understand
 		period: {
 			from: new Date('2026-04-01')
 		},
-		skills: getSkills('aws', 'docker', 'terraform', 'kubernetes', 'python', 'git', 'shell-scripting'),
+		skills: getSkills('aws', 'docker', 'terraform', 'kubernetes', 'python', 'git', 'shell-scripting', 'grafana', 'prometheus'),
 		name: 'Senior Cloud & DevOps Engineer',
 		color: 'purple',
 		links: [],

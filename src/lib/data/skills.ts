@@ -140,6 +140,46 @@ export const items = [
 		category: 'db'
 	}),
 	defineSkill({
+		slug: 'github-actions',
+		color: 'blue',
+		description: 'GitHub Actions is an API-driven CI/CD orchestration engine that automates software workflows directly within GitHub repositories. It allows developers to build, test, and deploy code across environments with simple YAML declarations, native secrets management, and custom self-hosted runners.',
+		logo: Assets.GitHubActions,
+		name: 'GitHub Actions',
+		category: 'devops'
+	}),
+	defineSkill({
+		slug: 'jenkins',
+		color: 'red',
+		description: 'Jenkins is a leading open-source automation server that provides hundreds of plugins to support building, deploying, and automating software projects. It enables robust, highly customizable pipeline-as-code scripting to support complex enterprise CI/CD workloads.',
+		logo: Assets.Jenkins,
+		name: 'Jenkins',
+		category: 'devops'
+	}),
+	defineSkill({
+		slug: 'jira',
+		color: 'blue',
+		description: 'Jira is a widely used agile project management tool by Atlassian that enables software teams to track issues, manage backlogs, plan sprints, and monitor project development lifecycle stages with customized boards and workflows.',
+		logo: Assets.Jira,
+		name: 'Jira',
+		category: 'devtools'
+	}),
+	defineSkill({
+		slug: 'grafana',
+		color: 'orange',
+		description: 'Grafana is an open-source analytics and visualization platform that connects to diverse data sources like Prometheus, Loki, and CloudWatch. It enables teams to build dynamic, real-time dashboards to monitor system health and visualize operational metrics.',
+		logo: Assets.Grafana,
+		name: 'Grafana',
+		category: 'devops'
+	}),
+	defineSkill({
+		slug: 'prometheus',
+		color: 'orange',
+		description: 'Prometheus is an open-source systems monitoring and alerting toolkit that collects and stores metrics as time-series data. It features a powerful query language (PromQL) and a multi-dimensional data model, making it the industry standard for cloud-native observability.',
+		logo: Assets.Prometheus,
+		name: 'Prometheus',
+		category: 'devops'
+	}),
+	defineSkill({
 		slug: 'kubernetes',
 		color: 'blue',
 		description: 'Kubernetes (also known as K8s) is an open-source container orchestration platform developed by Google. It automates container deployment, scaling, management, and load balancing, making it the industry standard for managing containerized applications in cloud-native environments.',

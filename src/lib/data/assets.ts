@@ -88,6 +88,11 @@ const Assets = {
 	RealTimeTracking: a('real_time_tracking.jpeg'),
 	AWSVPN: a('aws_vpn_logo.png'),
 	LandDeal: a('land_deal_logo.avif'),
+	GitHubActions: a('githubactions.svg'),
+	Jenkins: a('jenkins.svg'),
+	Jira: a('jira.svg'),
+	Grafana: a('grafana.svg'),
+	Prometheus: a('prometheus.svg'),
 };
 
 export default Assets;

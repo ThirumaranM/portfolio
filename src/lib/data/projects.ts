@@ -87,9 +87,9 @@ Designed the backend with a scalable, secure, and modular architecture, incorpor
 		color: '#1e90ff',
 		description: `Designed and deployed a real-time connection tracking platform on AWS using a microservices architecture hosted on Amazon ECS. Provisioned the complete infrastructure using Terraform, enabling consistent, repeatable, and automated deployments across environments.
 
-Implemented containerized microservices with Application Load Balancers, Auto Scaling, and Amazon Route 53 to deliver a highly available, scalable, and low-latency application. Built and maintained CI/CD pipelines to automate application deployment, reducing release time and ensuring reliable rollouts.
+Implemeted containerized microservices with Application Load Balancers, Auto Scaling, and Amazon Route 53 to deliver a highly available, scalable, and low-latency application. Built and maintained CI/CD pipelines to automate application deployment, reducing release time and ensuring reliable rollouts.
 
-Integrated Amazon CloudWatch for centralized logging, metrics collection, dashboards, and proactive alerting to monitor application health, infrastructure performance, and service availability. Configured comprehensive CloudWatch alarms and ECS service monitoring to quickly identify and resolve operational issues.
+Integrated Grafana, Prometheus, and Amazon CloudWatch for centralized logging, metrics collection, dashboards, and proactive alerting to monitor application health, infrastructure performance, and service availability. Configured comprehensive alerts and ECS service monitoring to quickly identify and resolve operational issues.
 
 Conducted extensive performance and load testing using Locust to simulate real-world traffic patterns, validate application scalability, and benchmark API response times. Tuned ECS Auto Scaling policies based on CPU utilization, memory usage, and request load, ensuring optimal resource utilization while maintaining application performance under high concurrency.
 
@@ -99,7 +99,7 @@ Collaborated with development teams to optimize container performance, troublesh
 		logo: Assets.RealTimeTracking,
 		name: 'Real-Time Tracking Application',
 		period: { from: new Date('2025-11-01') },
-		skills: getSkills('aws', 'ecs', 'terraform', 'docker'),
+		skills: getSkills('aws', 'ecs', 'terraform', 'docker', 'grafana', 'prometheus'),
 		type: 'Cloud Deployment',
 		screenshots: []
 	},
