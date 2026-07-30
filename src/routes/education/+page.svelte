@@ -43,15 +43,15 @@
 			/>
 			{#each result as education, index (education.slug)}
 				<div
-					class={`flex ${
-						index % 2 !== 0 ? 'flex-row' : 'flex-row-reverse'
+					class={`flex flex-col ${
+						index % 2 !== 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
 					} relative items-center w-full my-[10px]`}
 				>
 					<div class="flex-1 hidden lg:flex" />
 					<div class="hidden lg:inline p-15px bg-[var(--main)] rounded">
 						<UIcon icon="i-carbon-condition-point" />
 					</div>
-					<div class="col flex-1 items-stretch">
+					<div class="w-full lg:col lg:flex-1 items-stretch">
 						<Card>
 							<div class="flex-1 col gap-2 items-stretch">
 								<img

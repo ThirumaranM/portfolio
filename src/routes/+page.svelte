@@ -12,6 +12,7 @@
 	import { isBlank } from '@riadh-adrani/utils';
 	import { getPlatfromIcon } from '$lib/utils';
 	import { base } from '$app/paths';
+	import Assets, { getAssetURL } from '@data/assets';
 
 	const isEmail = (email: string): boolean => {
 		const reg =
@@ -37,6 +38,7 @@
 	<div
 		class="col self-center flex-1 md:flex-row md:self-stretch justify-center lg:justify-between items-center gap-8 mb-12"
 	>
+		<!-- Left: Text Block -->
 		<div class="md:flex-1 gap-4">
 			<MainTitle classes="md:text-left ">{name} {lastName}</MainTitle>
 			<p
@@ -45,7 +47,7 @@
 				<span class="text-[var(--secondary-text)]">I am a</span>
 				<TextCycler items={roles} />
 			</p>
-			<p class="text-[var(--tertiary-text)] text-center md:text-left text-[1.15em] font-extralight leading-relaxed max-w-3xl mb-6">
+			<p class="hero-description text-[var(--tertiary-text)] text-[1.15em] font-extralight leading-relaxed max-w-3xl mb-6">
 				{description}
 			</p>
 
@@ -118,5 +120,9 @@
 			background: var(--main-hover);
 			box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15), 0 0 10px rgba(99, 102, 241, 0.1);
 		}
+	}
+
+	.hero-description {
+		text-align: justify;
 	}
 </style>

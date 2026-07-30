@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { data, title } from '@data/resume';
 	import { base } from '$app/paths';
-	import { getAssetURL } from '$lib/data/assets';
+	import Assets, { getAssetURL } from '$lib/data/assets';
 	import { items as certificationItems } from '@data/certifications';
 	import { items as skillItems } from '@data/skills';
 	import { items as experienceItems } from '@data/experience';

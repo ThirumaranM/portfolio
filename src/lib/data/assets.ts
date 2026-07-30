@@ -93,6 +93,7 @@ const Assets = {
 	Jira: a('jira.svg'),
 	Grafana: a('grafana.svg'),
 	Prometheus: a('prometheus.svg'),
+	Profile: a('profile.png'),
 };
 
 export default Assets;

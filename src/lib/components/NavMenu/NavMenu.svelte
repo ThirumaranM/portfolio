@@ -22,6 +22,16 @@
 			expanded = v;
 		}
 	};
+
+	$: {
+		if (typeof document !== 'undefined') {
+			if (expanded) {
+				document.body.style.overflow = 'hidden';
+			} else {
+				document.body.style.overflow = '';
+			}
+		}
+	}
 </script>
 
 <div class="nav-menu">
@@ -75,13 +85,15 @@
 					{/if}
 				</button>
 			</div>
-			<div class="col-center md:hidden h-full hover:bg-[var(--main-hover)] cursor-pointer">
-				<!-- svelte-ignore a11y-no-static-element-interactions -->
+			<!-- svelte-ignore a11y-no-static-element-interactions -->
+			<div
+				class="col-center md:hidden h-full px-4 hover:bg-[var(--main-hover)] cursor-pointer"
+				on:keydown
+				on:keyup
+				on:click={() => toggleExpanded()}
+			>
 				<div
 					class={`nav-bar-mobile-btn col-center ${expanded ? 'nav-bar-mobile-btn-expanded' : ''}`}
-					on:keydown
-					on:keyup
-					on:click={() => toggleExpanded()}
 				/>
 			</div>
 		</div>
@@ -196,18 +208,20 @@
 	}
 
 	.nav-menu-mobile {
-		z-index: -1;
+		z-index: 50;
 		max-height: calc(100vh - 50px - 1px);
 		min-height: calc(100vh - 50px - 1px);
 		width: 100%;
 		position: absolute;
-		background-color: var(--main-close);
-		backdrop-filter: blur(16px);
-		-webkit-backdrop-filter: blur(16px);
+		background: var(--glass-bg);
+		border-bottom: 1px solid var(--border);
+		backdrop-filter: blur(24px);
+		-webkit-backdrop-filter: blur(24px);
+		box-shadow: 0 10px 30px var(--glass-shadow);
 		top: 51px;
 		transform: translateY(-100vh);
 		transition-property: transform opacity;
-		transition: 400ms ease;
+		transition: 400ms cubic-bezier(0.16, 1, 0.3, 1);
 		opacity: 0;
 
 		&-open {

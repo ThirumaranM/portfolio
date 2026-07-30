@@ -75,9 +75,25 @@
 		<div class="p-5 col-center gap-3 m-y-auto text-[var(--accent-text)]">
 			<UIcon icon="i-carbon-software-resource-cluster" classes="text-3.5em" />
 			<p class="font-300">Could not load skill data.</p>
+			<a
+				href={`${base}/skills`}
+				class="inline-flex items-center gap-2 text-sm text-[var(--accent-text)] hover:underline decoration-none"
+			>
+				<UIcon icon="i-carbon-arrow-left" />
+				<span>Back to Skills</span>
+			</a>
 		</div>
 	{:else}
 		<div class="flex flex-col items-center overflow-x-hidden">
+			<div class="w-full max-w-4xl px-4 pt-4 pb-2 flex justify-start">
+				<a
+					href={`${base}/skills`}
+					class="inline-flex items-center gap-2 text-sm font-mono text-[var(--tertiary-text)] hover:text-[var(--accent-text)] decoration-none transition-colors group"
+				>
+					<UIcon icon="i-carbon-arrow-left" classes="transition-transform group-hover:-translate-x-1" />
+					<span>Back to Skills</span>
+				</a>
+			</div>
 			<Banner img={getAssetURL(data.skill.logo)}>
 				<MainTitle>{data.skill.name}</MainTitle>
 			</Banner>
