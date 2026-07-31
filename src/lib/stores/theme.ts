@@ -9,7 +9,25 @@ const updateLocalStorage = (value: boolean) => {
 	}
 };
 
-export const theme = writable<boolean>(false);
+const getInitialTheme = (): boolean => {
+	if (!browser) return false; // SSR always defaults to light
+	try {
+		const stored = localStorage.getItem(key);
+		if (stored !== null) return JSON.parse(stored) === true;
+		return window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
+	} catch {
+		return false;
+	}
+};
+
+const initialTheme = getInitialTheme();
+
+// Apply data-theme immediately at module load (browser only), before first Svelte render
+if (browser) {
+	document.documentElement.setAttribute('data-theme', initialTheme ? 'dark' : 'light');
+}
+
+export const theme = writable<boolean>(initialTheme);
 
 export const toggleTheme = (value?: boolean) =>
 	theme.update((it) => {

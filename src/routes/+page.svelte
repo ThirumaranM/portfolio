@@ -27,6 +27,7 @@
 		'AWS Certified Solutions Architect – Professional',
 		'AWS Certified Developer – Associate'
 	];
+
 </script>
 
 <svelte:head>
@@ -125,4 +126,6 @@
 	.hero-description {
 		text-align: justify;
 	}
+
+
 </style>

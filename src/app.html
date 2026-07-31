@@ -15,7 +15,21 @@
 					} else {
 						isDark = JSON.parse(fromStore) === true;
 					}
-					document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+					const theme = isDark ? 'dark' : 'light';
+					document.documentElement.setAttribute('data-theme', theme);
+
+					// Apply background immediately — before any CSS loads — to kill the white flash
+					document.documentElement.style.backgroundColor = isDark ? '#0a0d16' : '#f8fafc';
+					document.documentElement.style.color = isDark ? '#f8fafc' : '#0f172a';
+
+					// Add no-transitions class to block theme-change CSS transitions on first paint
+					document.documentElement.classList.add('no-transitions');
+					// Remove after first frame so subsequent theme toggles animate normally
+					requestAnimationFrame(function () {
+						requestAnimationFrame(function () {
+							document.documentElement.classList.remove('no-transitions');
+						});
+					});
 				} catch (e) {}
 			})();
 		</script>

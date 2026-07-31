@@ -44,6 +44,14 @@ export const items = [
 		category: 'devops'
 	}),
 	defineSkill({
+		slug: 'ansible',
+		color: 'red',
+		description: 'Ansible is an open-source IT automation engine that automates provisioning, configuration management, application deployment, intra-service orchestration, and many other IT needs. It uses simple YAML playbooks to describe automation jobs in a readable format without installing target agents.',
+		logo: Assets.Ansible,
+		name: 'Ansible',
+		category: 'devops'
+	}),
+	defineSkill({
 		slug: 'python',
 		color: 'blue',
 		description: 'Python is a powerful, high-level programming language renowned for its simplicity, readability, and versatility. With its clean syntax and dynamic typing, Python enables rapid development and is widely used across various domains, including web development, data science, machine learning, artificial intelligence, automation, scripting, and cloud computing. Its extensive standard library and vibrant ecosystem of third-party packages (like NumPy, Pandas, Flask, Django, and TensorFlow) make Python a top choice for both beginners and experienced developers. Python’s community support and cross-platform compatibility have solidified its position as one of the most popular and in-demand programming languages in the world.',

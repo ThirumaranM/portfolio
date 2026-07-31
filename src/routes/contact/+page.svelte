@@ -8,7 +8,6 @@
     import SearchPage from '$lib/components/SearchPage.svelte';
     import { title, contactInfo } from '$lib/data/contact';
     import CardDivider from '$lib/components/Card/CardDivider.svelte';
-    import emailjs from '@emailjs/browser';
     import type { Icon } from '$lib/types';
 
     const socialMediaList = contactInfo.socialMedia as Array<{
@@ -37,6 +36,7 @@
         isSubmitting = true;
         submitError = '';
         try {
+            const emailjs = (await import('@emailjs/browser')).default;
             await emailjs.sendForm(
                 'service_184zkg5',
                 'template_76b5snh',

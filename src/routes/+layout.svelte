@@ -1,7 +1,7 @@
 <script lang="ts">
 	import 'uno.css';
 	import NavMenu from '$lib/components/NavMenu/NavMenu.svelte';
-	import InteractiveParticles from '$lib/components/InteractiveParticles/InteractiveParticles.svelte';
+	import ThreeDBackground from '$lib/components/ThreeDBackground/ThreeDBackground.svelte';
 	import '$lib/index.scss';
 	import { onHydrated, theme } from '$lib/stores/theme';
 	import { onMount } from 'svelte';
@@ -18,7 +18,7 @@
 		<div class="ambient-blob blob-cyan"></div>
 		<div class="ambient-blob blob-purple"></div>
 	</div>
-	<InteractiveParticles />
+	<ThreeDBackground />
 	<NavMenu />
 	<div class="content container"><slot /></div>
 </div>
@@ -29,6 +29,8 @@
 		flex-direction: column;
 		flex: 1;
 		padding: 0px 0px;
+		position: relative;
+		z-index: 2;
 	}
 
 	.body {
@@ -38,7 +40,8 @@
 		font-family: var(--text-f);
 		display: flex;
 		flex-direction: column;
-		transition-duration: 200ms;
+		/* Only animate theme color switches, never layout dimensions */
+		transition: background-color 200ms ease, color 200ms ease;
 
 		letter-spacing: 1px;
 
