@@ -18,12 +18,15 @@
 	$: borderColor = changeColorOpacity(computedColor, 0.6);
 	$: dropColor = changeColorOpacity(computedColor, 0.35);
 	$: bgColor = changeColorOpacity(computedColor, 0.04);
+	// Premium glow colors based on the card's accent
+	$: glowColor = changeColorOpacity(computedColor, 0.8);
 
 	$: {
 		if (el) {
 			el.style.setProperty('--border-color', borderColor);
 			el.style.setProperty('--drop-color', dropColor);
 			el.style.setProperty('--bg-color', bgColor);
+			el.style.setProperty('--glow-color', glowColor);
 		}
 	}
 
@@ -96,12 +99,11 @@
 	{href}
 	bind:this={el}
 	on:mousemove={onHover}
-	class={`card text-inherit decoration-none inline-flex flex-col border-1px border-solid border-[var(--border)] rounded-15px duration relative ${classes.join(
+	class={`card text-inherit decoration-none inline-flex flex-col rounded-15px duration relative ${classes.join(
 		' '
 	)}`}
-	style:bgColor={'red'}
 >
-	<div class="card-bg-img flex-1 flex flex-col p-25px rounded-15px">
+	<div class="card-content flex-1 flex flex-col p-25px rounded-15px">
 		<slot />
 	</div>
 </svelte:element>
@@ -111,6 +113,7 @@
 		--border-color: transparent;
 		--bg-color: transparent;
 		--drop-color: transparent;
+		--glow-color: transparent;
 
 		--bg-img: url();
 
@@ -121,28 +124,58 @@
 		--rot-y: 0;
 
 		background: var(--glass-bg) no-repeat right 40% / 40% var(--bg-img);
-		border: 1px solid var(--glass-border) !important;
+		border: 1px solid var(--glass-border);
 		backdrop-filter: blur(20px);
 		-webkit-backdrop-filter: blur(20px);
 		box-shadow: 0 8px 32px 0 var(--glass-shadow);
 		transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+		
+		/* Magic border glow */
+		&::before {
+			content: "";
+			position: absolute;
+			inset: -1px;
+			border-radius: 16px;
+			padding: 1px;
+			background: radial-gradient(
+				800px circle at var(--drop-x) var(--drop-y),
+				var(--glow-color),
+				transparent 40%
+			);
+			-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+			-webkit-mask-composite: xor;
+			mask-composite: exclude;
+			opacity: 0;
+			transition: opacity 0.5s;
+			pointer-events: none;
+			z-index: 10;
+		}
 
-		&-bg-img {
+		.card-content {
+			position: relative;
+			z-index: 2;
 			transition: all 0.3s ease;
-			&:hover {
+			border-radius: 14px;
+		}
+
+		&:hover {
+			transform: perspective(1000px) rotateX(var(--rot-x)) rotateY(var(--rot-y)) scale(1.02);
+			border-color: transparent !important;
+			box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16), 0 0 25px var(--drop-color);
+			
+			&::before {
+				opacity: 1;
+			}
+			
+			.card-content {
 				background-color: var(--bg-color);
 				background-image: radial-gradient(
-					circle 120px at var(--drop-x) var(--drop-y),
+					circle 250px at var(--drop-x) var(--drop-y),
 					var(--drop-color),
 					transparent
 				);
 			}
 		}
-
-		&:hover {
-			transform: perspective(1000px) rotateX(var(--rot-x)) rotateY(var(--rot-y)) scale(1.02);
-			border-color: var(--border-color, var(--border-hover)) !important;
-			box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16), 0 0 25px var(--drop-color);
-		}
 	}
 </style>
+

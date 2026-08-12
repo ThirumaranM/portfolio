@@ -86,7 +86,7 @@
 		platforms.forEach((p) => {
 			p.group.traverse((child) => {
 				if (child instanceof THREE.Mesh && child.name === 'platform-base') {
-					const mat = child.material as THREE.MeshBasicMaterial;
+					const mat = child.material as THREE.MeshPhysicalMaterial;
 					if (mat) {
 						mat.color.setHex(colors.platform);
 						mat.needsUpdate = true;
@@ -110,7 +110,7 @@
 
 		// 3. Packets
 		packets.forEach((p) => {
-			const mat = p.mesh.material as THREE.MeshBasicMaterial;
+			const mat = p.mesh.material as THREE.MeshStandardMaterial;
 			if (mat) {
 				mat.color.setHex(colors.packet);
 				mat.needsUpdate = true;
@@ -119,7 +119,7 @@
 
 		// 4. Pulsing and rotating nodes
 		pulsingNodes.forEach((p) => {
-			const mat = p.mesh.material as THREE.MeshBasicMaterial;
+			const mat = p.mesh.material as THREE.MeshPhysicalMaterial;
 			if (mat) {
 				if (p.mesh.name === 'k8s-node') {
 					mat.color.setHex(colors.k8sNode);
@@ -148,10 +148,14 @@
 		
 		// Outer wireframe ring
 		const outerGeo = new THREE.TorusGeometry(radius, 0.015, 6, 24);
-		const outerMat = new THREE.MeshBasicMaterial({
+		const outerMat = new THREE.MeshPhysicalMaterial({
 			color: colors.platform,
 			transparent: true,
-			opacity: 0.25
+			opacity: 0.25,
+			roughness: 0.1,
+			metalness: 0.8,
+			clearcoat: 1.0,
+			clearcoatRoughness: 0.1
 		});
 		const outerRing = new THREE.Mesh(outerGeo, outerMat);
 		outerRing.rotation.x = Math.PI / 2;
@@ -195,11 +199,13 @@
 		
 		// Ingress Rotating Torus Loops
 		const loopGeo = new THREE.TorusGeometry(0.35, 0.02, 6, 32);
-		const loopMat = new THREE.MeshBasicMaterial({
+		const loopMat = new THREE.MeshPhysicalMaterial({
 			color: colors.ingressGateway,
 			wireframe: true,
 			transparent: true,
-			opacity: 0.45
+			opacity: 0.45,
+			emissive: colors.ingressGateway,
+			emissiveIntensity: 0.5
 		});
 		const loop1 = new THREE.Mesh(loopGeo, loopMat);
 		loop1.rotation.y = Math.PI / 4;
@@ -235,19 +241,25 @@
 			const podGroup = new THREE.Group();
 			podGroup.position.set(pos.x, 0.16, pos.z);
 
-			const outerMat = new THREE.MeshBasicMaterial({
+			const outerMat = new THREE.MeshPhysicalMaterial({
 				color: colors.k8sNode,
 				wireframe: true,
 				transparent: true,
-				opacity: 0.28
+				opacity: 0.28,
+				emissive: colors.k8sNode,
+				emissiveIntensity: 0.2
 			});
 			const podMesh = new THREE.Mesh(podGeo, outerMat);
 			podGroup.add(podMesh);
 
-			const innerMat = new THREE.MeshBasicMaterial({
+			const innerMat = new THREE.MeshPhysicalMaterial({
 				color: colors.k8sNode,
 				transparent: true,
-				opacity: 0.7
+				opacity: 0.7,
+				roughness: 0.2,
+				metalness: 0.5,
+				emissive: colors.k8sNode,
+				emissiveIntensity: 0.8
 			});
 			const nodeMesh = new THREE.Mesh(nodeGeo, innerMat);
 			nodeMesh.name = 'k8s-node';
@@ -270,11 +282,15 @@
 			{ x: 0.3, z: 0.2 }
 		];
 		const dbGeo = new THREE.CylinderGeometry(0.24, 0.24, 0.12, 10);
-		const dbMat = new THREE.MeshBasicMaterial({
+		const dbMat = new THREE.MeshPhysicalMaterial({
 			color: colors.dbServer,
 			wireframe: true,
 			transparent: true,
-			opacity: 0.3
+			opacity: 0.3,
+			emissive: colors.dbServer,
+			emissiveIntensity: 0.3,
+			roughness: 0.1,
+			metalness: 0.9
 		});
 
 		dbPos.forEach((pos, idx) => {
@@ -325,10 +341,12 @@
 
 			// Spawn data packets along this curve path
 			const packetGeo = new THREE.SphereGeometry(0.08, 6, 6);
-			const packetMat = new THREE.MeshBasicMaterial({
+			const packetMat = new THREE.MeshStandardMaterial({
 				color: colors.packet,
 				transparent: true,
-				opacity: 0.8
+				opacity: 0.8,
+				emissive: colors.packet,
+				emissiveIntensity: 1.2
 			});
 
 			// 2 packets per stream running at offset offsets
@@ -385,8 +403,8 @@
 		const nx = e.clientX / window.innerWidth - 0.5;
 		const ny = e.clientY / window.innerHeight - 0.5;
 
-		targetCamera.x = nx * 3.5;
-		targetCamera.y = -ny * 3.0;
+		targetCamera.x = nx * 5.0; // Increased parallax
+		targetCamera.y = -ny * 4.5;
 	}
 
 	function handleResize() {
@@ -453,9 +471,12 @@
 		// 6. Pulse glowing nodes (Kubernetes app components)
 		pulsingNodes.forEach((pn) => {
 			pn.time += pn.pulseSpeed;
-			const mat = pn.mesh.material as THREE.MeshBasicMaterial;
+			const mat = pn.mesh.material as THREE.MeshPhysicalMaterial;
 			if (mat) {
 				mat.opacity = pn.baseOpacity * (0.4 + Math.sin(pn.time) * 0.6);
+				if (mat.emissiveIntensity !== undefined) {
+					mat.emissiveIntensity = 0.2 + (Math.sin(pn.time) * 0.8);
+				}
 			}
 		});
 
@@ -477,6 +498,18 @@
 		scene = new THREE.Scene();
 		camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
 		camera.position.set(0, 0, 9.5);
+
+		// Add Lighting for physical materials
+		const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+		scene.add(ambientLight);
+
+		const dirLight = new THREE.DirectionalLight(0x6366f1, 2);
+		dirLight.position.set(5, 5, 5);
+		scene.add(dirLight);
+
+		const pointLight1 = new THREE.PointLight(0x06b6d4, 3, 10);
+		pointLight1.position.set(0, 2, 2);
+		scene.add(pointLight1);
 
 		// 2. Setup WebGL Renderer with alpha channel
 		renderer = new THREE.WebGLRenderer({

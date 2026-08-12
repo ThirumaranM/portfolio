@@ -42,7 +42,7 @@
 		>
 			<UIcon icon="i-carbon-code" classes="text-2em" />
 			<span
-				class="ml-2 text-md font-bold hidden md:inline overflow-hidden whitespace-nowrap text-ellipsis"
+				class="ml-2 text-md font-bold hidden md:inline overflow-hidden whitespace-nowrap text-ellipsis animated-gradient-text"
 				>{HOME.name} {HOME.lastName}
 			</span>
 		</a>
@@ -196,7 +196,7 @@
 
 			&:global(.active-route) {
 				color: var(--main-text-hover) !important;
-				font-weight: 600;
+				text-shadow: 0 0 0.5px var(--main-text-hover);
 
 				&::after {
 					width: 100%;
