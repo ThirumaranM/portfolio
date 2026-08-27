@@ -1,7 +1,6 @@
 <script lang="ts">
 	import 'uno.css';
 	import NavMenu from '$lib/components/NavMenu/NavMenu.svelte';
-	import ThreeDBackground from '$lib/components/ThreeDBackground/ThreeDBackground.svelte';
 	import '$lib/index.scss';
 	import { onHydrated, theme } from '$lib/stores/theme';
 	import { onMount } from 'svelte';
@@ -13,13 +12,7 @@
 </script>
 
 <div class={`body ${$theme ? 'theme-dark' : 'theme-light'}`}>
-	<div class="noise-overlay"></div>
-	<div class="ambient-glow">
-		<div class="ambient-blob blob-indigo"></div>
-		<div class="ambient-blob blob-cyan"></div>
-		<div class="ambient-blob blob-purple"></div>
-	</div>
-	<ThreeDBackground />
+
 	<NavMenu />
 	<div class="content container"><slot /></div>
 </div>

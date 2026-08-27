@@ -50,15 +50,14 @@
 			{HOME.name}
 			{HOME.lastName}
 		</div>
-		<div class="flex-row flex-1 self-center h-full justify-center hidden md:flex">
+		<div class="flex-row flex-1 self-center h-full justify-center hidden md:flex gap-1 lg:gap-3">
 			{#each items as item (item.title)}
 				<a
 					href={`${base}${item.to}`}
 					class="nav-menu-item !text-[var(--secondary-text)]"
 					class:active-route={isRouteActive(item.to)}
 				>
-					<UIcon icon={item.icon} classes="text-1.3em" />
-					<span class="nav-menu-item-label">{item.title}</span>
+					<span class="nav-menu-item-label text-sm lg:text-base font-semibold">{item.title}</span>
 				</a>
 			{/each}
 		</div>
@@ -155,13 +154,18 @@
 		&-item {
 			text-decoration: none;
 			font-weight: 500;
-			padding: 10px 20px;
+			padding: 10px 12px;
 			color: inherit;
 			display: flex;
 			align-items: center;
 			position: relative;
 			overflow: hidden;
 			transition: color 0.2s, background-color 0.2s;
+			border-radius: 8px;
+
+			@media (min-width: 1024px) {
+				padding: 10px 16px;
+			}
 
 			&::after {
 				content: '';
@@ -175,13 +179,8 @@
 			}
 
 			&-label {
-				margin-left: 10px;
-
-				@media (max-width: 950px) {
-					& {
-						display: none;
-					}
-				}
+				margin-left: 0px;
+				white-space: nowrap;
 			}
 
 			&:hover {
